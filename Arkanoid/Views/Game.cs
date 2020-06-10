@@ -8,6 +8,7 @@ namespace Arkanoid
     public partial class Game : Form
     {
         private CustomPictureBox[,] cpb;
+        private PictureBox ball;
         public Game()
         {
             InitializeComponent();
@@ -26,7 +27,19 @@ namespace Arkanoid
             pictureBox1.BackgroundImage = Image.FromFile("../../Resources/Player.png");
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox1.Top = (Height - pictureBox1.Height) - 80;
+            pictureBox1.Left = (Width / 2) - (pictureBox1.Width / 2);
+            
+            ball = new PictureBox();
+            ball.Width = ball.Height = 20;
+            ball.BackgroundImage = Image.FromFile("../../Resources/Ball.png");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+
+            ball.Top = pictureBox1.Top - ball.Height;
+            ball.Left = pictureBox1.Left + (pictureBox1.Width / 2) - (ball.Width / 2);
+            
+            Controls.Add(ball);
             LoadTiles();
+            timer1.Start();
         }
 
         private void LoadTiles()
@@ -56,13 +69,27 @@ namespace Arkanoid
 
                     cpb[i, j].Left = j * pbWidth;
                     cpb[i, j].Top = i * pbHeight;
-                    
-                    cpb[i,j].BackgroundImage = Image.FromFile("../../Resources/" + GRN() + ".png");
-                    cpb[i, j].BackgroundImageLayout = ImageLayout.Stretch;
 
-                    cpb[i, j].Tag = "tileTag";
-                    
-                    Controls.Add(cpb[i,j]);
+                    if (i == 0)
+                    {
+                        cpb[i,j].BackgroundImage = Image.FromFile("../../Resources/11.png");
+                        cpb[i, j].BackgroundImageLayout = ImageLayout.Stretch;
+                        cpb[i, j].Tag = "tileTag";
+                        Controls.Add(cpb[i,j]);
+                    }
+
+                    else
+                    {
+                        cpb[i,j].BackgroundImage = Image.FromFile("../../Resources/" + GRN() + ".png");
+                        cpb[i, j].BackgroundImageLayout = ImageLayout.Stretch;
+                        cpb[i, j].Tag = "tileTag";
+                        Controls.Add(cpb[i,j]);
+                    }
+                        
+                    // cpb[i,j].BackgroundImage = Image.FromFile("../../Resources/" + GRN() + ".png");
+                    // cpb[i, j].BackgroundImageLayout = ImageLayout.Stretch;
+                    // cpb[i, j].Tag = "tileTag";
+                    // Controls.Add(cpb[i,j]);
                 }
             }
             
@@ -73,6 +100,77 @@ namespace Arkanoid
             return new Random().Next(1, 7);
         }
 
+
+        private void Game_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!GameData.GameStarted)
+            {
+                if (e.X < (Width - pictureBox1.Width))
+                {
+                    pictureBox1.Left = e.X;
+                    ball.Left = pictureBox1.Left + (pictureBox1.Width / 2) - (ball.Width / 2);
+                }
+            }
+
+            else
+            {
+                if(e.X < (Width - pictureBox1.Width))
+                    pictureBox1.Left = e.X;
+            }
+        }
+        
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if(!GameData.GameStarted)
+                return;
+
+            ball.Left += GameData.dirX;
+            ball.Top += GameData.dirY;
+            
+            BallBounce();
+        }
+
+        private void Game_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space)
+                GameData.GameStarted = true;
+        }
+
+        private void BallBounce()
+        {
+            if(ball.Bottom > Height)
+                Application.Exit();
+
+            if (ball.Left < 0 || ball.Right > Width)
+            {
+                GameData.dirX = -GameData.dirX;
+                return;
+            }
+
+            if (ball.Bounds.IntersectsWith(pictureBox1.Bounds))
+            {
+                GameData.dirY = -GameData.dirY;
+            }
+            
+            for (int i = 4; i >= 0; i--)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    if (ball.Bounds.IntersectsWith(cpb[i, j].Bounds))
+                    {
+                        cpb[i, j].Golpes--;
+                        
+                        if(cpb[i,j].Golpes==0)
+                            Controls.Remove(cpb[i,j]);
+
+                        GameData.dirY = -GameData.dirY;
+                        
+                        return;
+                        
+                    }
+                }
+            }
+        }
         
     }
 }
