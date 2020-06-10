@@ -65,9 +65,10 @@ namespace Arkanoid
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             try
             {
-                var play = new Game();
+                var play = new Play();
                 play.Show();
                 Hide();
             }
@@ -75,16 +76,6 @@ namespace Arkanoid
             {
                 MessageBox.Show(ex.Message);
             }
-            // try
-            // {
-            //     var play = new Play();
-            //     play.Show();
-            //     Hide();
-            // }
-            // catch (Exception ex)
-            // {
-            //     MessageBox.Show(ex.Message);
-            // }
            
         }
 
