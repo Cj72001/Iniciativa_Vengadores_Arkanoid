@@ -131,19 +131,17 @@ namespace Arkanoid
                 DatosJuego.dirY = -DatosJuego.dirY;
             }
 
+
             for (int i = 4; i >= 0; i--)
             {
                 for(int j = 0; j < 10; j++)
                 {
-                    if (cpb[i,j] != null && ball.Bounds.IntersectsWith(cpb[i, j].Bounds))
+                    if (ball.Bounds.IntersectsWith(cpb[i, j].Bounds))
                     {
                         cpb[i, j].Golpes--;
 
                         if (cpb[i, j].Golpes == 0)
-                        {
                             Controls.Remove(cpb[i, j]);
-                            cpb[i, j] = null;
-                        }
 
                         DatosJuego.dirY = -DatosJuego.dirY;
 
