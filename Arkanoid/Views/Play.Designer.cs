@@ -39,14 +39,13 @@ namespace Arkanoid
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Showcard Gothic", 54.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(178, 161);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(522, 129);
+            this.label1.Size = new System.Drawing.Size(512, 129);
             this.label1.TabIndex = 0;
             this.label1.Text = "Usuario:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -58,7 +57,7 @@ namespace Arkanoid
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(251, 312);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(348, 22);
+            this.textBox1.Size = new System.Drawing.Size(334, 22);
             this.textBox1.TabIndex = 1;
             // 
             // button1
@@ -71,7 +70,7 @@ namespace Arkanoid
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(344, 373);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(175, 49);
+            this.button1.Size = new System.Drawing.Size(161, 49);
             this.button1.TabIndex = 2;
             this.button1.Text = "JUGAR";
             this.button1.UseVisualStyleBackColor = false;
@@ -83,10 +82,9 @@ namespace Arkanoid
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = ((System.Drawing.Image) (resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(868, 592);
+            this.ClientSize = new System.Drawing.Size(854, 536);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);

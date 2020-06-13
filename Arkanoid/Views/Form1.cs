@@ -12,15 +12,20 @@ namespace Arkanoid
 {
     public partial class Form1 : Form
     {
+            private Rectangle button1OriginalRect;
+            private Rectangle button2OriginalRect;
+            private Rectangle button3OriginalRect;
+            private Size formOriginalSize;
+            
         public Form1()    
         {
             InitializeComponent();
-            Height = ClientSize.Height;
-            Width = ClientSize.Width;
-            WindowState = FormWindowState.Maximized;
+            // Height = ClientSize.Height;
+            // Width = ClientSize.Width;
+            // WindowState = FormWindowState.Maximized;
         }
-
-
+        
+       
         private void button1_MouseEnter(object sender, EventArgs e)
         {
                 button1.BackColor = Color.Red;
@@ -50,17 +55,47 @@ namespace Arkanoid
         {
             button3.BackColor = Color.Transparent;
         }
+        
+         // private void resizeChildrenControls()
+         // {
+         //     resizeControl(button1OriginalRect, button1);
+         //     resizeControl(button2OriginalRect, button2);
+         //     resizeControl(button3OriginalRect, button3);                            
+         // }
+         //
+         // private void resizeControl(Rectangle OriginalControlRect, Control control)
+         // {
+         //     float xRatio = (float)(this.Width) / (float)(formOriginalSize.Width);
+         //     float yRatio = (float)(this.Height) / (float)(formOriginalSize.Height);
+         //        
+         //        
+         //     int newX = (int)(OriginalControlRect.X * xRatio);
+         //     int newY = (int)(OriginalControlRect.Y * yRatio);
+         //        
+         //     int newWidth = (int)(OriginalControlRect.Width * xRatio);
+         //     int newHeight = (int)(OriginalControlRect.Height * yRatio);
+         //        
+         //     control.Location = new Point(newX, newY);
+         //     control.Size = new Size(newWidth, newHeight);                            
+         // }
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            //this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            
+            //resizeChildrenControls();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             //pictureBox1.BackgroundImage = Image.FromFile("../../Resources/arkanoid 3.png");
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            button1.BackgroundImageLayout = ImageLayout.Stretch;  
+            // button1.BackgroundImageLayout = ImageLayout.Stretch;  
+            
+            // formOriginalSize = this.Size;
+            // button1OriginalRect = new Rectangle(button1.Location.X, button1.Location.Y, button1.Width, button1.Height);
+            // button2OriginalRect = new Rectangle(button2.Location.X, button2.Location.Y, button2.Width, button2.Height);
+            // button3OriginalRect = new Rectangle(button3.Location.X, button3.Location.Y, button3.Width, button3.Height);
         }
 
         private void button1_Click(object sender, EventArgs e)
