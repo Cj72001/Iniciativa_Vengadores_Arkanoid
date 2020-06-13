@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Arkanoid.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -118,8 +119,8 @@ namespace Arkanoid
         {
             try
             {
-                var score = new Score();
-                score.Show();
+                var Form = new MainForm(new ScoreControl());
+                Form.Show();
                 Hide();
             }
             catch (Exception ex)
