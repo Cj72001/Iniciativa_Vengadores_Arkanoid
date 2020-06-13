@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlArkanoid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlArkanoid.Designer.cs">
+      <DependentUpon>ControlArkanoid.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomPictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -58,6 +64,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ControlArkanoid.resx">
+      <DependentUpon>ControlArkanoid.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
