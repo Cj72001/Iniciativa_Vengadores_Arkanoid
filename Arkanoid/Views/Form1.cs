@@ -104,8 +104,8 @@ namespace Arkanoid
             
             try
             {
-                var play = new Play();
-                play.Show();
+                var Form = new MainForm(new PlayControl());
+                Form.Show();
                 Hide();
             }
             catch (Exception ex)

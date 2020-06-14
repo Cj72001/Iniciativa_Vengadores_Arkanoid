@@ -15,6 +15,9 @@ namespace Arkanoid.Views
         public MainForm()
         {
             InitializeComponent();
+            Height = ClientSize.Height;
+            Width = ClientSize.Width;
+            WindowState = FormWindowState.Maximized;
         }
 
         public MainForm(UserControl uc)
