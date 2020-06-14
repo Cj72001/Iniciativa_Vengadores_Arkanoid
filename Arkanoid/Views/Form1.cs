@@ -82,7 +82,7 @@ namespace Arkanoid
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            //this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             
             //resizeChildrenControls();
         }
@@ -106,6 +106,7 @@ namespace Arkanoid
             {
                 var Form = new MainForm(new PlayControl());
                 Form.Show();
+                Form.Dock = DockStyle.Fill;
                 Hide();
             }
             catch (Exception ex)

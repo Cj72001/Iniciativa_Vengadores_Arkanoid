@@ -37,14 +37,12 @@ namespace Arkanoid.Views
             for (int x = 0; x < tlpScores.ColumnCount; x++)
             {
                 tlpScores.ColumnStyles.Add(new ColumnStyle() { Width = 50, SizeType = SizeType.Percent });
-
             }
             tlpScores.RowStyles.Clear();
             tlpScores.RowCount = scores.Rows.Count + 2;
             for (int x = 0; x < tlpScores.RowCount; x++)
             {
                 tlpScores.RowStyles.Add(new RowStyle() { Height = 50, SizeType = SizeType.Percent });
-
             }
 
             int lo = 0;

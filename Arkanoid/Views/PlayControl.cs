@@ -6,11 +6,8 @@ namespace Arkanoid.Views
 {
     public partial class PlayControl : UserControl
     {
-
-        private Rectangle BtnBack1OriginalRect;
-        private Rectangle BtnPlay1OriginalRect;
-        private Rectangle textBox1OriginalRect;
         
+        UserControl ControlActual = new UserControl();
         private Size formOriginalSize;
         public PlayControl()
         {
@@ -27,7 +24,14 @@ namespace Arkanoid.Views
                 }
                 else
                 {
-                    
+                    this.Controls.Clear();
+                    var ac = new ArkanoidControl();
+                    ac.Width = Width;
+                    ac.Height = Height;
+                    ac.Dock = DockStyle.Fill;
+                    ac.AutoSize = true;
+                    ControlActual = ac;
+                    this.Controls.Add(ControlActual);
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
@@ -47,9 +51,16 @@ namespace Arkanoid.Views
             {
                 var menuForm = new Form1();
                 menuForm.Show();
+                menuForm.Dock = DockStyle.Fill;
                 Hide();
             }
             catch (Exception exception) { MessageBox.Show(exception.Message); throw; }
+        }
+
+        private void PlayControl_Resize(object sender, EventArgs e)
+        {
+            ControlActual.Height = Height;
+            ControlActual.Width = Width;
         }
     }
 }

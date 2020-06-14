@@ -12,6 +12,7 @@ namespace Arkanoid.Views
 {
     public partial class MainForm : Form
     {
+        private UserControl ControlActual = new UserControl();
         public MainForm()
         {
             InitializeComponent();
@@ -23,14 +24,22 @@ namespace Arkanoid.Views
         public MainForm(UserControl uc)
         {
             InitializeComponent();
-            uc.Height = Height;
-            uc.Width = Width;
-            this.Controls.Add(uc);
+            ControlActual = uc;
+            ControlActual.Height = Height;
+            ControlActual.Width = Width;
+            ControlActual.AutoSize = true;
+            this.Controls.Add(ControlActual);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            ControlActual.Height = Height;
+            ControlActual.Width = Width;
         }
     }
 }

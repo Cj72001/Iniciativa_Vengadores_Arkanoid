@@ -41,6 +41,7 @@ namespace Arkanoid.Views
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -51,6 +52,7 @@ namespace Arkanoid.Views
             this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.BtnPlay, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.BtnBack, 2, 3);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
@@ -58,7 +60,7 @@ namespace Arkanoid.Views
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.27778F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.72222F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(958, 720);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1080, 720);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -67,9 +69,9 @@ namespace Arkanoid.Views
             this.tableLayoutPanel1.SetColumnSpan(this.label1, 2);
             this.label1.Font = new System.Drawing.Font("Showcard Gothic", 49.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(242, 180);
+            this.label1.Location = new System.Drawing.Point(273, 180);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(472, 180);
+            this.label1.Size = new System.Drawing.Size(534, 180);
             this.label1.TabIndex = 0;
             this.label1.Text = "USUARIO:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -78,20 +80,21 @@ namespace Arkanoid.Views
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.textBox1, 2);
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(242, 363);
+            this.textBox1.Location = new System.Drawing.Point(273, 363);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(472, 22);
+            this.textBox1.Size = new System.Drawing.Size(534, 22);
             this.textBox1.TabIndex = 1;
             // 
             // BtnPlay
             // 
             this.BtnPlay.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BtnPlay.Dock = System.Windows.Forms.DockStyle.Top;
             this.BtnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnPlay.Font = new System.Drawing.Font("Showcard Gothic", 16.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.BtnPlay.ForeColor = System.Drawing.Color.White;
-            this.BtnPlay.Location = new System.Drawing.Point(242, 437);
+            this.BtnPlay.Location = new System.Drawing.Point(273, 437);
             this.BtnPlay.Name = "BtnPlay";
-            this.BtnPlay.Size = new System.Drawing.Size(233, 71);
+            this.BtnPlay.Size = new System.Drawing.Size(264, 71);
             this.BtnPlay.TabIndex = 2;
             this.BtnPlay.Text = "Jugar";
             this.BtnPlay.UseVisualStyleBackColor = true;
@@ -102,12 +105,13 @@ namespace Arkanoid.Views
             // BtnBack
             // 
             this.BtnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BtnBack.Dock = System.Windows.Forms.DockStyle.Top;
             this.BtnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnBack.Font = new System.Drawing.Font("Showcard Gothic", 16.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.BtnBack.ForeColor = System.Drawing.Color.White;
-            this.BtnBack.Location = new System.Drawing.Point(481, 437);
+            this.BtnBack.Location = new System.Drawing.Point(543, 437);
             this.BtnBack.Name = "BtnBack";
-            this.BtnBack.Size = new System.Drawing.Size(233, 71);
+            this.BtnBack.Size = new System.Drawing.Size(264, 71);
             this.BtnBack.TabIndex = 4;
             this.BtnBack.Text = "Volver al menu";
             this.BtnBack.UseVisualStyleBackColor = true;
@@ -123,6 +127,7 @@ namespace Arkanoid.Views
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "PlayControl";
             this.Size = new System.Drawing.Size(1080, 720);
+            this.Resize += new System.EventHandler(this.PlayControl_Resize);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

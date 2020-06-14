@@ -86,6 +86,7 @@ C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\bin\Debug\Syst
 C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.csprojAssemblyReference.cache
 C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.exe.config
 C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.Properties.Resources.resources
+C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.Views.ArkanoidControl.resources
 C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.Form1.resources
 C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.Game.resources
 C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.Views.MainForm.resources
