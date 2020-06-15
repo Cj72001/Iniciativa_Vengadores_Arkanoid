@@ -11,7 +11,7 @@ namespace Arkanoid.Model
                    "Password = fWYhnDsRuBKitfROuM1i2fo4FH7TzlRQ;" +
                    "Database = rwnpnzul";
                
-               public static DataTable RealizarConsulta(string sql)
+               public static DataTable Query(string sql)
                {
                    NpgsqlConnection conn = new NpgsqlConnection(CadenaConexion);
                    DataSet ds = new DataSet();
@@ -24,7 +24,7 @@ namespace Arkanoid.Model
                    return ds.Tables[0];
                }
        
-               public static void RealizarAccion(string sql)
+               public static void NonQuery(string sql)
                {
                    NpgsqlConnection conn = new NpgsqlConnection(CadenaConexion);
                    

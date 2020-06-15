@@ -73,6 +73,23 @@ namespace Arkanoid.Views
 
             }
         }
- 
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var menuForm = new Menu();
+            menuForm.Show();
+            this.Hide();
+        }
+
+        //Propiedades de botones:
+        private void button1_MouseEnter(object sender, EventArgs e)
+        {
+            button1.BackColor = Color.Red; 
+        }
+
+        private void button1_MouseLeave(object sender, EventArgs e)
+        {
+            button1.BackColor = Color.Transparent;
+        }
     }
 }

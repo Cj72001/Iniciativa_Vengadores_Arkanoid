@@ -9,13 +9,10 @@ namespace Arkanoid.Views
     {
         private CustomPictureBox[,] cpb;
         private PictureBox ball;
+        public Action GameEnded;
         public ArkanoidControl()
         {
             InitializeComponent();
-        }
-        private void Game_Resize(object sender, EventArgs e)
-        {
-           // this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
         
         private void Game_Load(object sender, EventArgs e)
@@ -27,7 +24,9 @@ namespace Arkanoid.Views
             
             ball = new PictureBox();
             ball.Width = ball.Height = 20;
-            ball.BackgroundImage = Image.FromFile("../../Resources/Ball.png");
+            ball.BackColor = Color.Black;
+            // ball.BackgroundImage = Image.FromFile("../../Resources/ball.png")
+
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
 
             ball.Top = pictureBox1.Top - ball.Height;
@@ -81,10 +80,6 @@ namespace Arkanoid.Views
                         cpb[i, j].Tag = "tileTag";
                         Controls.Add(cpb[i,j]);
                     }
-                    // cpb[i,j].BackgroundImage = Image.FromFile("../../Resources/" + GRN() + ".png");
-                    // cpb[i, j].BackgroundImageLayout = ImageLayout.Stretch;
-                    // cpb[i, j].Tag = "tileTag";
-                    // Controls.Add(cpb[i,j]);
                 }
             }
             
@@ -133,9 +128,12 @@ namespace Arkanoid.Views
 
         private void BallBounce()
         {
-            if(ball.Bottom > Height)
-                Application.Exit();
-
+            if (ball.Bottom > Height)
+            {
+                timer1.Stop();
+                GameEnded?.Invoke();
+            }
+                
             if (ball.Left < 0 || ball.Right > Width)
             {
                 GameData.dirX = -GameData.dirX;
