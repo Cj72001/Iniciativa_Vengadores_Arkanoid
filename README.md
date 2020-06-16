@@ -5,6 +5,7 @@
 * El manual técnico cambia entre los grupos de tres y cuatro personas, leer sección de [documentación](#documentación)
 * Entrega primer avance - **sábado 13 de junio (sin ponderación)**
 * Entrega final - **lunes 22 de junio**
+* Elementos que **obligatoriamente** deben ser cargados desde código: todo lo que tenga que ver con el UserControl/Form del juego. Cosas como el menú o el top pueden ser trabajadas con el designer.
 
 ## Sumario
 [**Definición formal**](#definición-formal) <br>
