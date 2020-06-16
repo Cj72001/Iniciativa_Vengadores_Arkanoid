@@ -12,7 +12,7 @@ namespace Arkanoid
         private ArkanoidControl ac;
         public Game()
         {
-            //Propiedad de Game
+            //Propiedad del form Game
             InitializeComponent();
             Height = ClientSize.Height;
             Width = ClientSize.Width;
@@ -41,6 +41,20 @@ namespace Arkanoid
                 menuForm.Show();
                 this.Close();
             };
+            
+            //Metodo GameWon que vuelve al menu al ganar la partida
+            ac.GameWon = () =>{
+                // ac = null;
+                // ac = new ArkanoidControl();
+                // ac.Hide();
+                // MessageBox.Show("PERDISTE");
+                // tableLayoutPanel1.Show();
+                MessageBox.Show("GANASTE LA PARTIDA");
+                var menuForm = new Menu();
+                menuForm.Show();
+                this.Close();
+            };
+            
         }
 
         //Propiedades de botones:

@@ -61,14 +61,6 @@ namespace Arkanoid.Views
         {
             BtnExit.BackColor = Color.Transparent;
         }
-        
-         
-
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            
-        }
 
         private void BtnPlay_Click(object sender, EventArgs e)
         {
@@ -80,7 +72,7 @@ namespace Arkanoid.Views
 
         private void BtnScore_Click(object sender, EventArgs e)
         {
-            //Cambiando el control que contiene actualemnte el tableLayout por ScoreControl
+            //Cambiando el control que contiene actualemente el tableLayout por ScoreControl
             tableLayoutPanel1.Hide();
             this.Text = "Score";
             Controls.Add(sc);

@@ -10,6 +10,8 @@ namespace Arkanoid.Views
         private CustomPictureBox[,] cpb;
         private PictureBox ball;
         public Action GameEnded;
+        public Action GameWon;
+
         public ArkanoidControl()
         {
             InitializeComponent();
@@ -39,8 +41,10 @@ namespace Arkanoid.Views
         
         private void LoadTiles()
         {
-            int xAxis = 10;
-            int yAxis = 5;
+            // int xAxis = 10;
+            // int yAxis = 5;
+            int xAxis = 1;
+            int yAxis = 3;
 
             int pbHeight = (int)(Height * 0.3) / yAxis;
             int pbWidth = (Width - xAxis) / xAxis;
@@ -57,7 +61,7 @@ namespace Arkanoid.Views
                         cpb[i, j].Golpes = 2;
 
                     else
-                        cpb[i, j].Golpes = 1;
+                        cpb[i, j].Golpes = 1; 
 
                     cpb[i, j].Height = pbHeight;
                     cpb[i, j].Width = pbWidth;
@@ -145,21 +149,43 @@ namespace Arkanoid.Views
                 GameData.dirY = -GameData.dirY;
             }
             
-            for (int i = 4; i >= 0; i--)
+            int xAxis = 1;
+            int yAxis = 3;
+            
+            for (int i = 0; i < yAxis; i++) // for (int i = 4; i >= 0; i--)
             {
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < xAxis; j++) // for (int j = 10; j < 1; j++)
                 {
                     if (ball.Bounds.IntersectsWith(cpb[i, j].Bounds))
                     {
+                        if (i == 1)
+                        {
+                            Controls.Remove(cpb[i,j]);
+                            timer1.Stop();
+                            GameWon?.Invoke();
+                            return;
+                        }
+
+                       
                         cpb[i, j].Golpes--;
-                        
+                            
                         if(cpb[i,j].Golpes==0)
                             Controls.Remove(cpb[i,j]);
 
                         GameData.dirY = -GameData.dirY;
+                        cpb[i,j].Bounds = Rectangle.Empty ;
                         
                         return;
-                        
+
+                        // cpb[i, j].Golpes--;
+                        //
+                        // if(cpb[i,j].Golpes==0)
+                        //     Controls.Remove(cpb[i,j]);
+                        //
+                        // GameData.dirY = -GameData.dirY;
+                        //
+                        // return;
+
                     }
                 }
             }
