@@ -56,7 +56,6 @@ C:\Users\jasso\Projects\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkano
 C:\Users\jasso\Projects\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.Views.MainForm.resources
 C:\Users\jasso\Projects\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.Views.ScoreControl.resources
 C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\bin\Debug\Arkanoid.exe.config
-C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\bin\Debug\Arkanoid.exe
 C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\bin\Debug\Arkanoid.pdb
 C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\bin\Debug\Npgsql.dll
@@ -83,11 +82,7 @@ C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arka
 C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.exe.config
 C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.Properties.Resources.resources
 C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.Views.ArkanoidControl.resources
-C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.Form1.resources
 C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.Game.resources
-C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.Views.MainForm.resources
-C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.Play.resources
-C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.Views.PlayControl.resources
 C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.Views.ScoreControl.resources
 C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.csproj.GenerateResource.cache
 C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.csproj.CopyComplete
@@ -119,3 +114,4 @@ C:\Users\omar flores\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\A
 C:\Users\omar flores\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.Views.ScoreControl.resources
 C:\Users\omar flores\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.csproj.CopyComplete
 C:\Users\omar flores\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.Views.Menu.resources
+C:\Users\Fernando\Desktop\Iniciativa_Vengadores_Arkanoid\Arkanoid\obj\Debug\Arkanoid.Views.Menu.resources

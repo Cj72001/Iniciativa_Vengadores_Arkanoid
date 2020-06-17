@@ -14,6 +14,7 @@ namespace Arkanoid.Views
 {
     public partial class ScoreControl : UserControl
     {
+        private Menu menu;
         public ScoreControl()
         {
             InitializeComponent();
@@ -78,18 +79,12 @@ namespace Arkanoid.Views
         {
             var menuForm = new Menu();
             menuForm.Show();
-            this.Hide();
+            this.Dispose();
         }
 
         //Propiedades de botones:
-        private void button1_MouseEnter(object sender, EventArgs e)
-        {
-            button1.BackColor = Color.Red; 
-        }
+        private void button1_MouseEnter(object sender, EventArgs e) { button1.BackColor = Color.Red; }
 
-        private void button1_MouseLeave(object sender, EventArgs e)
-        {
-            button1.BackColor = Color.Transparent;
-        }
+        private void button1_MouseLeave(object sender, EventArgs e) { button1.BackColor = Color.Transparent; }
     }
 }

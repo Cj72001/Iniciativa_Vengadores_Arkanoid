@@ -10,6 +10,7 @@ namespace Arkanoid
     public partial class Game : Form
     {
         private ArkanoidControl ac;
+
         public Game()
         {
             //Propiedad del form Game
@@ -81,18 +82,35 @@ namespace Arkanoid
 
         private void BtnPlay_Click(object sender, EventArgs e)
         {
+
             try
             {
+                string nombre = TxtName.Text;
+                var consultar = DBConnetion.RealizarConsulta($"SELECT * FROM USERS " +
+                                                             $"where name = '{nombre}'");
+                
+                string agregar = $"INSERT into USERS(name) VALUES('{nombre}')";
+                
                 if (TxtName.Text.Equals(""))
                 {
                     MessageBox.Show("Debe ingresar un nombre de usuario");
                 }
                 else
                 {
-                    //Cambiando el control del tableLayout por ArkanoidControl
-                    tableLayoutPanel1.Hide();
-                    this.Text = "Arkanoid";
-                    Controls.Add(ac);
+                    if (consultar.Rows.Count == 1)
+                    {
+                        tableLayoutPanel1.Hide();
+                        this.Text = "Arkanoid";
+                        Controls.Add(ac);   
+                    }
+                    else
+                    {
+                        //Cambiando el control del tableLayout por ArkanoidControl
+                        DBConnetion.RealizarAccion(agregar);
+                        tableLayoutPanel1.Hide();
+                        this.Text = "Arkanoid";
+                        Controls.Add(ac);
+                    }
                 }
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
@@ -105,7 +123,6 @@ namespace Arkanoid
                 var menuForm = new Menu();
                 menuForm.Show();
                 // menuForm.Dock = DockStyle.Fill;
-               
                 this.Close();
             }
             catch (Exception exception)

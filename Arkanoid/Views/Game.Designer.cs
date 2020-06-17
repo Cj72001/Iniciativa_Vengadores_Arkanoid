@@ -31,8 +31,7 @@ namespace Arkanoid
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources =
-                new System.ComponentModel.ComponentResourceManager(typeof(Game));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Game));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtName = new System.Windows.Forms.TextBox();
@@ -46,16 +45,11 @@ namespace Arkanoid
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel1.ColumnCount = 5;
-            this.tableLayoutPanel1.ColumnStyles.Add(
-                new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(
-                new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(
-                new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(
-                new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(
-                new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.TxtName, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.BtnPlay, 3, 3);
@@ -65,28 +59,19 @@ namespace Arkanoid
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(
-                new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(
-                new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(
-                new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(
-                new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(
-                new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(817, 540);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // label1
             // 
-            this.label1.Anchor =
-                ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top |
-                                                        System.Windows.Forms.AnchorStyles.Left) |
-                                                       System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.label1, 3);
-            this.label1.Font = new System.Drawing.Font("Showcard Gothic", 40F, System.Drawing.FontStyle.Regular,
-                System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label1.Font = new System.Drawing.Font("Showcard Gothic", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(166, 108);
             this.label1.Name = "label1";
@@ -102,7 +87,7 @@ namespace Arkanoid
             this.TxtName.Location = new System.Drawing.Point(166, 221);
             this.TxtName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.TxtName.Name = "TxtName";
-            this.TxtName.Size = new System.Drawing.Size(483, 31);
+            this.TxtName.Size = new System.Drawing.Size(483, 22);
             this.TxtName.TabIndex = 2;
             // 
             // BtnPlay
@@ -110,8 +95,7 @@ namespace Arkanoid
             this.BtnPlay.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnPlay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnPlay.Font = new System.Drawing.Font("Showcard Gothic", 16.8F, System.Drawing.FontStyle.Regular,
-                System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.BtnPlay.Font = new System.Drawing.Font("Showcard Gothic", 16.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.BtnPlay.ForeColor = System.Drawing.Color.White;
             this.BtnPlay.Location = new System.Drawing.Point(492, 329);
             this.BtnPlay.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -129,8 +113,7 @@ namespace Arkanoid
             this.BtnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnBack.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnBack.Font = new System.Drawing.Font("Showcard Gothic", 16.8F, System.Drawing.FontStyle.Regular,
-                System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.BtnBack.Font = new System.Drawing.Font("Showcard Gothic", 16.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.BtnBack.ForeColor = System.Drawing.Color.White;
             this.BtnBack.Location = new System.Drawing.Point(166, 329);
             this.BtnBack.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -156,15 +139,15 @@ namespace Arkanoid
             this.ResumeLayout(false);
         }
 
+        private System.Windows.Forms.Button BtnBack;
+        private System.Windows.Forms.Button BtnPlay;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TextBox TxtName;
+
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer timer1;
 
         #endregion
-
-        private System.Windows.Forms.Button BtnBack;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button BtnPlay;
-        private System.Windows.Forms.TextBox TxtName;
     }
 }

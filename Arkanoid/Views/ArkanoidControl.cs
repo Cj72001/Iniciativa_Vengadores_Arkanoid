@@ -166,7 +166,7 @@ namespace Arkanoid.Views
                         {
                             Controls.Remove(cpb[i,j]);
                             timer1.Stop();
-                            GameWon?.Invoke();
+                           GameWon?.Invoke();
                             return;
                         }
 
@@ -180,7 +180,6 @@ namespace Arkanoid.Views
                         cpb[i,j].Bounds = Rectangle.Empty ;
                         
                         return;
-
                         // cpb[i, j].Golpes--;
                         //
                         // if(cpb[i,j].Golpes==0)
