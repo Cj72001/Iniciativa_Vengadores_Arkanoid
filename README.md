@@ -168,19 +168,20 @@ El archivo README que colocará en su repositorio deberá estar escrito en **Mar
 El README deberá contener:
 
 <ol>
-  <il>Como título el nombre de su grupo</li>  
-  <il>Como subtítulo o título 2 la palabra "Integrantes", y luego una lista con los nombres y carnets de cada uno de los integrantes de su equipo</li>
-  <il>Como subtítulo o título 2, la palabra "IDE", y luego el IDE utilizado. Si por alguna razón utilizaron más de uno, especificar</li>
-  <il>Como subtítulo o título 2, la palabra "FAQ's" que hace referencia a "Frequently Asked Questions", en la cuál deberá colocar mínimo 5 preguntas (con su respuesta) que un usuario pueda hacerle a usted como desarrollador acerca del <b>funcionamiento</b>, ojo, no son preguntas respecto al código, ni como hicieron tal cosa, sino preguntas como:
+  <li>Como título el nombre de su grupo</li>  
+  <li>Como subtítulo o título 2 la palabra "Integrantes", y luego una lista con los nombres y carnets de cada uno de los integrantes de su equipo</li>
+  <li>Como subtítulo o título 2, la palabra "IDE", y luego el IDE utilizado. Si por alguna razón utilizaron más de uno, especificar</li>
+  <li>Como subtítulo o título 2, la palabra "FAQ's" que hace referencia a "Frequently Asked Questions", en la cuál deberá colocar mínimo 5 preguntas (con su respuesta) que un usuario pueda hacerle a usted como desarrollador acerca del <b>funcionamiento</b>, ojo, no son preguntas respecto al código, ni como hicieron tal cosa, sino preguntas como:
     <ul>
-      <il>¿Cómo iniciar el juego?</li>
-      <il>¿Cómo salir del juego?</li>
-      <il>¿Qué pasa si encuentro un error?</li>
-      <il>¿Dónde puedo ver mi puntaje?</li>
-      <il>Mi nombre aparece en la lista de Top Jugadores, ¿que significa esto?</li>
+      <li>¿Cómo iniciar el juego?</li>
+      <li>¿Cómo salir del juego?</li>
+      <li>¿Qué pasa si encuentro un error?</li>
+      <li>¿Dónde puedo ver mi puntaje?</li>
+      <li>Mi nombre aparece en la lista de Top Jugadores, ¿que significa esto?</li>
     </ul>
     Puede que algunas preguntas sean sumamente obvias, pero como desarrolladores se debe asumir siempre que el usuario es lo más ignorante posible y ser lo más explicativos posibles.
     </li>
+  <li>Como subtítulo o título 2, la palabra "Trello", y el link correspondiente a su tablero</li>
 </ol>
 
 PD: Cuidar su ortografía
