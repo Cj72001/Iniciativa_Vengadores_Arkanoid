@@ -9,3 +9,4 @@ C:\Users\Walter\Documents\Workspaces\POO\ProyectoPOO\Source Code\Arkanoid\obj\De
 C:\Users\Walter\Documents\Workspaces\POO\ProyectoPOO\Source Code\Arkanoid\obj\Debug\Arkanoid.pdb
 C:\Users\Walter\Documents\Workspaces\POO\ProyectoPOO\Source Code\Arkanoid\obj\Debug\Arkanoid.csprojAssemblyReference.cache
 C:\Users\Walter\Documents\Workspaces\POO\ProyectoPOO\Source Code\Arkanoid\obj\Debug\Arkanoid.ControlArkanoid.resources
+C:\Users\Walter\Documents\Workspaces\POO\ProyectoPOO\Source Code\Arkanoid\obj\Debug\Arkanoid.FormTop.resources

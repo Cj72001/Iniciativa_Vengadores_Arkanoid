@@ -1,16 +1,16 @@
 ﻿namespace Arkanoid
 {
-    public static class DatosJuego
+    public static class GameData
     {
-        public static bool juegoIniciado = false;
-        public static double ticksRealizados = 0;
-        public static int dirX = 7, dirY = -dirX, vidas = 3, puntaje = 0;
+        public static bool gameStarted = false;
+        public static double ticksCount = 0;
+        public static int dirX = 7, dirY = -dirX, lifes = 3, score = 0;
         
-        public static void InicializarJuego()
+        public static void InitializeGame()
         {
-            juegoIniciado = false;
-            vidas = 3;
-            puntaje = 0;
+            gameStarted = false;
+            lifes = 3;
+            score = 0;
         }
     }
 }

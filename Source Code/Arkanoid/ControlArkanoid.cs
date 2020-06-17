@@ -7,39 +7,51 @@ namespace Arkanoid
     public partial class ControlArkanoid : UserControl
     {
         private CustomPictureBox[,] cpb;
-        private Panel scores;
-        private Label vidasRestantes, puntaje;
+        private Panel scorePanel;
+        private Label remainingLifes, score;
         private PictureBox ball;
 
         // Para trabajar con pic + label
-        private PictureBox corazon;
+        private PictureBox heart;
 
         // Para trabajar con n pic
-        private PictureBox[] corazones;
+        private PictureBox[] hearts;
 
-        private delegate void AccionesPelota();
-        private readonly AccionesPelota MovimientoPelota;
-        public Action TerminarJuego;
+        private delegate void BallActions();
+        private readonly BallActions BallMovements;
+        public Action FinishGame;
 
         public ControlArkanoid()
         {
             InitializeComponent();
 
-            MovimientoPelota = RebotarPelota;
-            MovimientoPelota += MoverPelota;
+            BallMovements = BounceBall;
+            BallMovements += MoveBall;
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams handleParam = base.CreateParams;
+                handleParam.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED       
+                return handleParam;
+            }
         }
 
         // Metodos que coinciden con el delegate de Event
         private void ControlArkanoid_Load(object sender, EventArgs e)
         {
-            PanelPuntajes();
+            BackColor = Color.Transparent;
+
+            ScoresPanel();
             
             // Seteando los atributos para picBox jugador
-            pictureBox1.BackgroundImage = Image.FromFile("../../Img/Player.png");
-            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            playerPb.BackgroundImage = Image.FromFile("../../Img/Player.png");
+            playerPb.BackgroundImageLayout = ImageLayout.Stretch;
 
-            pictureBox1.Top = Height - pictureBox1.Height - 80;
-            pictureBox1.Left = (Width / 2) - (pictureBox1.Width / 2);
+            playerPb.Top = Height - playerPb.Height - 80;
+            playerPb.Left = (Width / 2) - (playerPb.Width / 2);
 
             // Seteando los atributos para picBox pelota
             ball = new PictureBox();
@@ -48,8 +60,8 @@ namespace Arkanoid
             ball.BackgroundImage = Image.FromFile("../../Img/Ball.png");
             ball.BackgroundImageLayout = ImageLayout.Stretch;
 
-            ball.Top = pictureBox1.Top - ball.Height;
-            ball.Left = pictureBox1.Left + (pictureBox1.Width / 2) - (ball.Width / 2);
+            ball.Top = playerPb.Top - ball.Height;
+            ball.Left = playerPb.Left + (playerPb.Width / 2) - (ball.Width / 2);
 
             Controls.Add(ball);
 
@@ -71,17 +83,18 @@ namespace Arkanoid
                 {
                     cpb[i, j] = new CustomPictureBox();
 
-                    if (i == 0)
-                        cpb[i, j].Golpes = 2;
+                    if (i == 4)
+                        cpb[i, j].Hits = 2;
                     else
-                        cpb[i, j].Golpes = 1;
+                        cpb[i, j].Hits = 1;
 
+                    // Seteando el tamano
                     cpb[i, j].Height = pbHeight;
                     cpb[i, j].Width = pbWidth;
 
                     // Posicion de left, y posicion de top
                     cpb[i, j].Left = j * pbWidth;
-                    cpb[i, j].Top = i * pbHeight + scores.Height + 1;
+                    cpb[i, j].Top = i * pbHeight + scorePanel.Height + 1;
 
                     int imageBack = 0;
 
@@ -94,10 +107,18 @@ namespace Arkanoid
                     else
                         imageBack = 3;
 
-                    cpb[i, j].BackgroundImage = Image.FromFile("../../Img/" + imageBack + ".png");
-                    cpb[i, j].BackgroundImageLayout = ImageLayout.Stretch;
+                    if (i == 4)
+                    {
+                        cpb[i, j].BackgroundImage = Image.FromFile("../../Img/tb1.png");
+                        cpb[i, j].Tag = "blinded";
+                    }
+                    else
+                    {
+                        cpb[i, j].BackgroundImage = Image.FromFile("../../Img/" + imageBack + ".png");
+                        cpb[i, j].Tag = "tileTag";
+                    }
 
-                    cpb[i, j].Tag = "tileTag";
+                    cpb[i, j].BackgroundImageLayout = ImageLayout.Stretch;
 
                     Controls.Add(cpb[i, j]);
                 }
@@ -106,69 +127,69 @@ namespace Arkanoid
 
         private void ControlArkanoid_MouseMove(object sender, MouseEventArgs e)
         {
-            if (!DatosJuego.juegoIniciado)
+            if (!GameData.gameStarted)
             {
-                if (e.X < (Width - pictureBox1.Width))
+                if (e.X < (Width - playerPb.Width))
                 {
-                    pictureBox1.Left = e.X;
-                    ball.Left = pictureBox1.Left + (pictureBox1.Width / 2) - (ball.Width / 2);
+                    playerPb.Left = e.X;
+                    ball.Left = playerPb.Left + (playerPb.Width / 2) - (ball.Width / 2);
                 }
             }
             else
             {
-                if (e.X < (Width - pictureBox1.Width))
-                    pictureBox1.Left = e.X;
+                if (e.X < (Width - playerPb.Width))
+                    playerPb.Left = e.X;
             }
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            if (!DatosJuego.juegoIniciado)
+            if (!GameData.gameStarted)
                 return;
 
-            DatosJuego.ticksRealizados += 0.01;
-            MovimientoPelota?.Invoke();
+            GameData.ticksCount += 0.01;
+            BallMovements?.Invoke();
         }
 
         private void ControlArkanoid_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Space)
             {
-                DatosJuego.juegoIniciado = true;
+                GameData.gameStarted = true;
                 timer1.Start();
             }
         }
 
-        private void RebotarPelota()
+        private void BounceBall()
         {
             if (ball.Top < 0)
-                DatosJuego.dirY = -DatosJuego.dirY;
+                GameData.dirY = -GameData.dirY;
 
             if (ball.Bottom > Height)
             {
-                DatosJuego.vidas--;
-                DatosJuego.juegoIniciado = false;
+                GameData.lifes--;
+                GameData.gameStarted = false;
                 timer1.Stop();
 
-                ReposicionarElementos();
-                ActualizarElementos();
+                RepositionElements();
+                UpdateElements();
 
-                if (DatosJuego.vidas == 0)
+                if (GameData.lifes == 0)
                 {
                     timer1.Stop();
-                    TerminarJuego?.Invoke();
+                    FinishGame?.Invoke();
                 }
             }
 
             if (ball.Left < 0 || ball.Right > Width)
             {
-                DatosJuego.dirX = -DatosJuego.dirX;
+                GameData.dirX = -GameData.dirX;
                 return;
             }
 
-            if (ball.Bounds.IntersectsWith(pictureBox1.Bounds))
+            if (ball.Bounds.IntersectsWith(playerPb.Bounds))
             {
-                DatosJuego.dirY = -DatosJuego.dirY;
+                GameData.dirY = -GameData.dirY;
             }
 
             for (int i = 4; i >= 0; i--)
@@ -176,125 +197,129 @@ namespace Arkanoid
                 for (int j = 0; j < 10; j++)
                 {
                     if (cpb[i, j] != null && ball.Bounds.IntersectsWith(cpb[i, j].Bounds))
-                    {
-                        DatosJuego.puntaje += (int)(cpb[i, j].Golpes * DatosJuego.ticksRealizados);
-                        cpb[i, j].Golpes--;
+                    {   
+                        GameData.score += (int)(cpb[i, j].Hits * GameData.ticksCount);
+                        cpb[i, j].Hits--;
 
-                        if (cpb[i, j].Golpes == 0)
+                        if (cpb[i, j].Hits == 0)
                         {
                             Controls.Remove(cpb[i, j]);
                             cpb[i, j] = null;
                         }
+                        else if(cpb[i, j].Tag.Equals("blinded"))
+                            cpb[i, j].BackgroundImage = Image.FromFile("../../Img/tb2.png");
 
-                        DatosJuego.dirY = -DatosJuego.dirY;
+                        GameData.dirY = -GameData.dirY;
 
-                        puntaje.Text = DatosJuego.puntaje.ToString();
+                        score.Text = GameData.score.ToString();
+
                         return;
                     }
                 }
             }
         }
 
-        private void MoverPelota()
+        private void MoveBall()
         {
-            ball.Left += DatosJuego.dirX;
-            ball.Top += DatosJuego.dirY;
+            ball.Left += GameData.dirX;
+            ball.Top += GameData.dirY;
         }
 
-        private void PanelPuntajes()
+        // Se encarga de inicializar todos los elementos del panel de puntajes + vidas
+        private void ScoresPanel()
         {
             // Instanciar panel
-            scores = new Panel();
+            scorePanel = new Panel();
 
             // Setear elementos del panel
-            scores.Width = Width;
-            scores.Height = (int)(Height * 0.07);
+            scorePanel.Width = Width;
+            scorePanel.Height = (int)(Height * 0.07);
 
-            scores.Top = scores.Left = 0;
+            scorePanel.Top = scorePanel.Left = 0;
 
-            scores.BackColor = Color.Black;
+            scorePanel.BackColor = Color.Black;
 
             #region Label + PictureBox
             // Instanciar pb
-            corazon = new PictureBox();
+            heart = new PictureBox();
 
-            corazon.Height = corazon.Width = scores.Height;
+            heart.Height = heart.Width = scorePanel.Height;
 
-            corazon.Top = 0;
-            corazon.Left = 20;
+            heart.Top = 0;
+            heart.Left = 20;
 
-            corazon.BackgroundImage = Image.FromFile("../../Img/Heart.png");
-            corazon.BackgroundImageLayout = ImageLayout.Stretch;
+            heart.BackgroundImage = Image.FromFile("../../Img/Heart.png");
+            heart.BackgroundImageLayout = ImageLayout.Stretch;
             #endregion
 
             #region N cantidad de PictureBox
-            corazones = new PictureBox[DatosJuego.vidas];
+            hearts = new PictureBox[GameData.lifes];
 
-            for(int i = 0; i < DatosJuego.vidas; i++)
+            for(int i = 0; i < GameData.lifes; i++)
             {
                 // Instanciacion de pb
-                corazones[i] = new PictureBox();
+                hearts[i] = new PictureBox();
 
-                corazones[i].Height = corazones[i].Width = scores.Height;
+                hearts[i].Height = hearts[i].Width = scorePanel.Height;
 
-                corazones[i].BackgroundImage = Image.FromFile("../../Img/Heart.png");
-                corazones[i].BackgroundImageLayout = ImageLayout.Stretch;
+                hearts[i].BackgroundImage = Image.FromFile("../../Img/Heart.png");
+                hearts[i].BackgroundImageLayout = ImageLayout.Stretch;
 
-                corazones[i].Top = 0;
+                hearts[i].Top = 0;
 
                 if (i == 0)
                     // corazones[i].Left = 20;
-                    corazones[i].Left = scores.Width / 2;
+                    hearts[i].Left = scorePanel.Width / 2;
                 else
                 {
-                    corazones[i].Left = corazones[i - 1].Right + 5;
+                    hearts[i].Left = hearts[i - 1].Right + 5;
                 }
             }
             #endregion
 
             // Instanciar labels
-            vidasRestantes = new Label();
-            puntaje = new Label();
+            remainingLifes = new Label();
+            score = new Label();
 
             // Setear elementos de los labels
-            vidasRestantes.ForeColor = puntaje.ForeColor = Color.White;
+            remainingLifes.ForeColor = score.ForeColor = Color.White;
 
-            vidasRestantes.Text = "x " + DatosJuego.vidas.ToString();
-            puntaje.Text = DatosJuego.puntaje.ToString();
+            remainingLifes.Text = "x " + GameData.lifes.ToString();
+            score.Text = GameData.score.ToString();
 
-            vidasRestantes.Font = puntaje.Font = new Font("Microsoft YaHei", 24F);
-            vidasRestantes.TextAlign = puntaje.TextAlign = ContentAlignment.MiddleCenter;
+            remainingLifes.Font = score.Font = new Font("Microsoft YaHei", 24F);
+            remainingLifes.TextAlign = score.TextAlign = ContentAlignment.MiddleCenter;
 
-            vidasRestantes.Left = corazon.Right + 5;
-            puntaje.Left = Width - 100;
+            remainingLifes.Left = heart.Right + 5;
+            score.Left = Width - 100;
 
-            vidasRestantes.Height = puntaje.Height = scores.Height;
+            remainingLifes.Height = score.Height = scorePanel.Height;
 
-            scores.Controls.Add(corazon);
-            scores.Controls.Add(vidasRestantes);
-            scores.Controls.Add(puntaje);
+            scorePanel.Controls.Add(heart);
+            scorePanel.Controls.Add(remainingLifes);
+            scorePanel.Controls.Add(score);
 
-            foreach(var pb in corazones)
+            foreach(var pb in hearts)
             {
-                scores.Controls.Add(pb);
+                scorePanel.Controls.Add(pb);
             }
 
-            Controls.Add(scores);
+            Controls.Add(scorePanel);
         }
 
-        private void ReposicionarElementos()
+        private void RepositionElements()
         {
-            pictureBox1.Left = (Width / 2) - (pictureBox1.Width / 2);
-            ball.Top = pictureBox1.Top - ball.Height;
-            ball.Left = pictureBox1.Left + (pictureBox1.Width / 2) - (ball.Width / 2);
+            playerPb.Left = (Width / 2) - (playerPb.Width / 2);
+            ball.Top = playerPb.Top - ball.Height;
+            ball.Left = playerPb.Left + (playerPb.Width / 2) - (ball.Width / 2);
         }
 
-        private void ActualizarElementos()
+        private void UpdateElements()
         {
-            vidasRestantes.Text = "x " + DatosJuego.vidas.ToString();
+            remainingLifes.Text = "x " + GameData.lifes.ToString();
 
-            scores.Controls.Remove(corazones[DatosJuego.vidas]);
-            corazones[DatosJuego.vidas] = null;
+            scorePanel.Controls.Remove(hearts[GameData.lifes]);
+            hearts[GameData.lifes] = null;
         }
     }
 }

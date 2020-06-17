@@ -17,8 +17,23 @@ namespace Arkanoid
             WindowState = FormWindowState.Maximized;
         }
 
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        CreateParams handleParam = base.CreateParams;
+        //        handleParam.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED       
+        //        return handleParam;
+        //    }
+        //}
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            tableLayoutPanel1.BackColor = Color.Transparent;
+            
+            BackgroundImage = Image.FromFile("../../Img/bg.png");
+            BackgroundImageLayout = ImageLayout.Stretch;
+
             ca = new ControlArkanoid();
 
             ca.Dock = DockStyle.Fill;
@@ -26,7 +41,7 @@ namespace Arkanoid
             ca.Width = Width;
             ca.Height = Height;
 
-            ca.TerminarJuego = () =>
+            ca.FinishGame = () =>
             {
                 ca = null;
                 ca = new ControlArkanoid();
@@ -46,7 +61,15 @@ namespace Arkanoid
 
         private void BttnViewTop_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Sin implementar aun");
+            FormTop ft = new FormTop();
+
+            ft.CloseAction = () =>
+            {
+                Show();
+            };
+
+            ft.Show();
+            Hide();
         }
 
         private void BttnExitApplication_Click(object sender, EventArgs e)
