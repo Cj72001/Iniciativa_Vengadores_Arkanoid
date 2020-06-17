@@ -41,9 +41,13 @@ namespace Arkanoid.Views
         
         private void LoadTiles()
         {
-            // int xAxis = 10;
-            // int yAxis = 5;
-            int xAxis = 1;
+            /*REAL
+             int xAxis = 10;
+             int yAxis = 5;*/
+            /*PRUEBA
+             int xAxis = 2;
+             int yAxis = 3;*/
+            int xAxis = 2;
             int yAxis = 3;
 
             int pbHeight = (int)(Height * 0.3) / yAxis;
@@ -149,7 +153,7 @@ namespace Arkanoid.Views
                 GameData.dirY = -GameData.dirY;
             }
             
-            int xAxis = 1;
+            int xAxis = 2;
             int yAxis = 3;
             
             for (int i = 0; i < yAxis; i++) // for (int i = 4; i >= 0; i--)
