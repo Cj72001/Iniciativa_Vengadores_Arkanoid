@@ -1,6 +1,8 @@
 # Proyecto final - POO
 
 ## Avisos
+* Ver [**método de entrega**](#método-de-entrega)<br>
+* Aclaración: **deberán implementar como mínimo 5 excepciones personalizadas a lo largo de su código**.
 * Añadidas sprites para uso de todos, en dado caso no quieran crear las propias. No es evaluado si las crean o no
 * El manual técnico cambia entre los grupos de tres y cuatro personas, leer sección de [documentación](#documentación)
 * Entrega primer avance - **sábado 13 de junio (sin ponderación)**
@@ -21,6 +23,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;[Herramientas](#herramientas)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Problemas en flujo de trabajo](#problemas-en-flujo-de-trabajo)<br>
 [**Documentación**](#documentación)<br>
+[**Método de entrega**](#método-de-entrega)<br>
 
 ## Definición formal
 El proyecto final de la materia consistirá en la recreación de un juego clásico, **Arkanoid**. Para las personas que nunca lo han jugado o escuchado, acá un breve video.
@@ -135,3 +138,20 @@ Lista de eventos y excepciones con breve descripción.
 
 ### Adicional para los grupos de cuatro integrantes
 En la sección de UML del Manual Técnico deberá agregar un UML de diagrama de casos de uso.
+
+## Método de entrega
+Para tener **derecho** a calificación deberá seguir **al pie de la letra** las siguientes indicaciones:
+
+<ul>
+  <li>
+    Deberá tener dentro de su repositorio los siguientes elementos:
+    <ul>
+      <li>Una carpeta llamada SourceCode que contenga el código fuente de su proyecto</li>
+      <li>Una carpeta llamada Documentación, que deberá contener el manual técnico, el script utilizado de la base de datos, y dos archivos en formato PNG que corresponderán al diagrama relacional normalizado de su base de datos, y el diagrama de clases. <b>Para grupos de más de cuatro integrantes, recordar anexar también el manual de usuario</b></li>
+      <li>Un archivo README.md con la estructura mencionada acá</li>
+    </ul>
+  </li>
+  <li>Crear un release en GitHub. Esto lo puede hacer en la pestaña releases de la barra de su repositorio, seleccionará <b>Create new Release</b>, en la ventana que cargue, el Tag Version deberá colocar <b>v1.0.0</b>, donde diga @master (justo a la par del Tag Version), deberá dar clic y seleccionar Commits, luego el commit más reciente realizado, en Release Title <b>Arkanoid Project Release</b>, y finalmente en la parte donde dice "Describe this release" debe colocar cinco aspectos importantes del proyecto. <b>Ojo: este proceso debe ser realizado únicamente por una persona del grupo</b></li>
+</ul>
+
+## Formato de archivo README
