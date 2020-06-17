@@ -161,6 +161,7 @@ Para tener **derecho** a calificación deberá seguir **al pie de la letra** las
     </ul>
   </li>
 </ul>
+PD: si en su proyecto utilizó fuentes personalizadas, recuerde abrir un issue en **este** repositorio, con el nombre de la fuente que utilizó y su link de descarga. Si un grupo no lo hace, y el programa lanza una excepción, entonces tendrá disminución en su nota por no seguir indicaciones.
 
 ## Formato de archivo README
 El archivo README que colocará en su repositorio deberá estar escrito en **MarkDown**, y su extensión debe ser README.md, esto puede crearse propiamente desde GitHub, editores de código como Atom, VSCode, o incluso desde IDEs como Rider.
