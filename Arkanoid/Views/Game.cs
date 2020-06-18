@@ -18,8 +18,7 @@ namespace Arkanoid
             Height = ClientSize.Height;
             Width = ClientSize.Width;
             WindowState = FormWindowState.Maximized;
-            // this.BackgroundImage = Image.FromFile("../../Resources/fondo1.jpg");
-            this.BackColor = Color.Black;
+            this.BackgroundImage = Image.FromFile("../../Resources/fondo1.jpg");
         }
         
         private void Game_Load(object sender, EventArgs e)

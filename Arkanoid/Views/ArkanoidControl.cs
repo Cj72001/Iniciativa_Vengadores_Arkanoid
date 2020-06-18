@@ -17,7 +17,7 @@ namespace Arkanoid.Views
         private BallActions BallMovement;
         public Action GameEnded;
         public Action GameWon;
-        private int xAxis = 3, yAxis = 3;
+        private int xAxis = 3, yAxis = 4;
         
         /*REAL
              int xAxis = 10;
