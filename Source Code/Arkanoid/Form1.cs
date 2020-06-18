@@ -7,6 +7,7 @@ namespace Arkanoid
     public partial class Form1 : Form
     {
         private ControlArkanoid ca;
+        
         public Form1()
         {
             InitializeComponent();
@@ -15,20 +16,17 @@ namespace Arkanoid
             Height = ClientSize.Height;
             Width = ClientSize.Width;
             WindowState = FormWindowState.Maximized;
-        }
 
-        //protected override CreateParams CreateParams
-        //{
-        //    get
-        //    {
-        //        CreateParams handleParam = base.CreateParams;
-        //        handleParam.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED       
-        //        return handleParam;
-        //    }
-        //}
+            MinimizeBox = MaximizeBox = false;
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            MinimumSize = new Size(Width, Height);
+            MaximumSize = new Size(Width, Height);
+
+
+
             tableLayoutPanel1.BackColor = Color.Transparent;
             
             BackgroundImage = Image.FromFile("../../Img/bg.png");
@@ -53,6 +51,11 @@ namespace Arkanoid
             };
         }
 
+        protected override void OnResize(EventArgs e)
+        {
+            
+        }
+
         private void BttnStartGame_Click(object sender, EventArgs e)
         {
             tableLayoutPanel1.Hide();
@@ -61,11 +64,12 @@ namespace Arkanoid
 
         private void BttnViewTop_Click(object sender, EventArgs e)
         {
-            FormTop ft = new FormTop();
-
-            ft.CloseAction = () =>
+            FormTop ft = new FormTop
             {
-                Show();
+                CloseAction = () =>
+                {
+                    Show();
+                }
             };
 
             ft.Show();
@@ -75,6 +79,13 @@ namespace Arkanoid
         private void BttnExitApplication_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Form1_Move(object sender, EventArgs e)
+        {
+            Width = ClientSize.Width;
+            Height = ClientSize.Height;
+            Location = new Point(0,0);
         }
     }
 }

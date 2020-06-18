@@ -7,9 +7,11 @@ namespace Arkanoid
     public partial class ControlArkanoid : UserControl
     {
         private CustomPictureBox[,] cpb;
-        private Panel scorePanel;
+        private Panel scorePanel, blackPanel;
         private Label remainingLifes, score;
         private PictureBox ball;
+
+        private double tiempoTranscurido = 0, tiempoLimite = 4;
 
         // Para trabajar con pic + label
         private PictureBox heart;
@@ -147,7 +149,11 @@ namespace Arkanoid
             if (!GameData.gameStarted)
                 return;
 
-            GameData.ticksCount += 0.01;
+            tiempoTranscurido += timer1.Interval;
+
+            if (tiempoTranscurido / 1000 / 60 == 4)
+                FinishGame?.Invoke();
+            // GameData.ticksCount += 0.01;
             BallMovements?.Invoke();
         }
 
@@ -157,6 +163,19 @@ namespace Arkanoid
             {
                 GameData.gameStarted = true;
                 timer1.Start();
+
+                if (blackPanel != null)
+                    blackPanel.Hide();
+            }
+            else if(e.KeyCode == Keys.Escape)
+            {
+                blackPanel = new Panel();
+                blackPanel.BackColor = Color.FromArgb(100, Color.Black);
+                blackPanel.Size = Size;
+
+                Controls.Add(blackPanel);
+                blackPanel.Show();
+                Controls.SetChildIndex(blackPanel, -1);
             }
         }
 
@@ -177,6 +196,7 @@ namespace Arkanoid
                 if (GameData.lifes == 0)
                 {
                     timer1.Stop();
+
                     FinishGame?.Invoke();
                 }
             }
