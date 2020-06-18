@@ -18,7 +18,8 @@ namespace Arkanoid
             Height = ClientSize.Height;
             Width = ClientSize.Width;
             WindowState = FormWindowState.Maximized;
-            this.BackgroundImage = Image.FromFile("../../Resources/fondo1.jpg");
+            // this.BackgroundImage = Image.FromFile("../../Resources/fondo1.jpg");
+            this.BackColor = Color.Black;
         }
         
         private void Game_Load(object sender, EventArgs e)
@@ -45,15 +46,12 @@ namespace Arkanoid
             
             //Metodo GameWon que vuelve al menu al ganar la partida
             ac.GameWon = () =>{
-                // ac = null;
-                // ac = new ArkanoidControl();
-                // ac.Hide();
-                // MessageBox.Show("PERDISTE");
-                // tableLayoutPanel1.Show();
+                
                 MessageBox.Show("GANASTE LA PARTIDA");
                 var menuForm = new Menu();
                 menuForm.Show();
                 this.Close();
+                
             };
             
         }
@@ -118,17 +116,9 @@ namespace Arkanoid
 
         private void BtnBack_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var menuForm = new Menu();
+            var menuForm = new Menu();
                 menuForm.Show();
-                // menuForm.Dock = DockStyle.Fill;
                 this.Close();
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message); throw;
-            }
         }
     }
 }
