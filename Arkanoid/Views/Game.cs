@@ -32,12 +32,8 @@ namespace Arkanoid
             //Metodo GameEnded que vuelve al menu al terminar el juego
             ac.GameEnded = () =>
             {
-                // ac = null;
-                // ac = new ArkanoidControl();
-                // ac.Hide();
-                // MessageBox.Show("PERDISTE");
-                // tableLayoutPanel1.Show();
                 MessageBox.Show("PERDISTE");
+                
                 var menuForm = new Menu();
                 menuForm.Show();
                 this.Close();
@@ -52,7 +48,6 @@ namespace Arkanoid
                 this.Close();
                 
             };
-            
         }
 
         //Propiedades de botones:

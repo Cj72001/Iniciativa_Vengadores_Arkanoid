@@ -6,7 +6,7 @@ namespace Arkanoid.Model
 
     {
 
-        public int Golpes { get; set; }
+        public int Hits { get; set; }
 
         public CustomPictureBox() : base() {}
     }

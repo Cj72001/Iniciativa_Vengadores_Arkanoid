@@ -8,15 +8,16 @@ namespace Arkanoid.Views
     public partial class ArkanoidControl : UserControl
     {
         private CustomPictureBox[,] cpb;
-        private Panel scores;
+        private Panel scorePanel;
         private Label remainingLives, score;
         private PictureBox heart;
         
         private PictureBox ball;
         private delegate void BallActions();
         private BallActions BallMovement;
-        public Action GameEnded;
+        public Action GameEnded; 
         public Action GameWon;
+        public Action <int, string> DataGame; //RECIBIENDO SCORE y NOMBRE DEL USUARIO
         private int xAxis = 3, yAxis = 4;
         
         /*REAL
@@ -30,7 +31,7 @@ namespace Arkanoid.Views
         {
             InitializeComponent();
             
-            BallMovement = BallBounce;
+            BallMovement = BounceBall;
             BallMovement += MoveBall;
         }
         
@@ -39,21 +40,23 @@ namespace Arkanoid.Views
         {
             ScorePanel();
             
-            
             //Seteando los elementos para el pictureBox jugador:
-            pictureBox1.BackgroundImage = Image.FromFile("../../Resources/Player.png");
-            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Top = Height - pictureBox1.Height - 80;
-            pictureBox1.Left = (Width / 2) - (pictureBox1.Width / 2);
+            playerPb.BackgroundImage = Image.FromFile("../../Resources/Player.png");
+            playerPb.BackgroundImageLayout = ImageLayout.Stretch;
+            playerPb.Top = Height - playerPb.Height - 80;
+            playerPb.Left = (Width / 2) - (playerPb.Width / 2);
             
             //Seteando los elementos para el pictureBox ball:
             ball = new PictureBox();
             ball.Width = ball.Height = 20;
             ball.BackgroundImage = Image.FromFile("../../Resources/ball.png");
-            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch; 
+            playerPb.BackgroundImageLayout = ImageLayout.Stretch; 
             ball.BackColor = Color.White;
-            ball.Top = pictureBox1.Top - ball.Height;
-            ball.Left = pictureBox1.Left + (pictureBox1.Width / 2) - (ball.Width / 2);
+            ball.Top = playerPb.Top - ball.Height;
+            ball.Left = playerPb.Left + (playerPb.Width / 2) - (ball.Width / 2);
+            
+            //Suscribiendo metodo para insertar datos a BD
+            DataGame = InsertValuesDB;
 
 
             Controls.Add(ball);
@@ -74,20 +77,22 @@ namespace Arkanoid.Views
                     cpb[i,j] = new CustomPictureBox();
 
                     if (i == 0)
-                        cpb[i, j].Golpes = 2;
+                        cpb[i, j].Hits = 2;
 
                     else
-                        cpb[i, j].Golpes = 1; 
+                        cpb[i, j].Hits = 1; 
 
+                    //Tamano de cpb
                     cpb[i, j].Height = pbHeight;
                     cpb[i, j].Width = pbWidth;
                     
                     //Posicion de left y top
                     cpb[i, j].Left = j * pbWidth;
-                    cpb[i, j].Top = i * pbHeight + scores.Height + 1;
+                    cpb[i, j].Top = i * pbHeight + scorePanel.Height + 1;
 
                     if (i == 0)
                     {
+                        //Seteando imagen de cpb en i==0
                         cpb[i,j].BackgroundImage = Image.FromFile("../../Resources/10.png");
                         cpb[i, j].BackgroundImageLayout = ImageLayout.Stretch;
                         cpb[i, j].Tag = "tileTag";
@@ -96,26 +101,12 @@ namespace Arkanoid.Views
                     
                     else
                     {
+                        //Seteando imagen de cpb 
                         cpb[i,j].BackgroundImage = Image.FromFile("../../Resources/" + GRN() + ".png");
                         cpb[i, j].BackgroundImageLayout = ImageLayout.Stretch;
                         cpb[i, j].Tag = "tileTag";
                         Controls.Add(cpb[i,j]);
                     }
-                    // int imageBack = 0;
-                    // if (i % 2 == 0 && j % 2 == 0)
-                    //     imageBack = 3;
-                    //
-                    // else if (i % 2 == 0 && j % 2 != 0)
-                    //     imageBack = 4;
-                    //
-                    // else if (i % 2 != 0 && j % 2 != 0)
-                    //     imageBack = 4;
-                    //
-                    // else
-                    //     imageBack = 3;
-                    //
-                    // cpb[i,j].BackgroundImage = Image.FromFile("../../Resources/"+ imageBack +"10.png");
-                    // cpb[i, j].BackgroundImageLayout = ImageLayout.Stretch;
                 }
             }
             
@@ -129,25 +120,25 @@ namespace Arkanoid.Views
 
         private void Game_MouseMove(object sender, MouseEventArgs e)
         {
-            if (!GameData.GameStarted)
+            if (!GameData.gameStarted)
             {
-                if (e.X < (Width - pictureBox1.Width))
+                if (e.X < (Width - playerPb.Width))
                 {
-                    pictureBox1.Left = e.X;
-                    ball.Left = pictureBox1.Left + (pictureBox1.Width / 2) - (ball.Width / 2);
+                    playerPb.Left = e.X;
+                    ball.Left = playerPb.Left + (playerPb.Width / 2) - (ball.Width / 2);
                 }
             }
 
             else
             {
-                if(e.X < (Width - pictureBox1.Width))
-                    pictureBox1.Left = e.X;
+                if(e.X < (Width - playerPb.Width))
+                    playerPb.Left = e.X;
             }
         }
         
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            if(!GameData.GameStarted)
+            if(!GameData.gameStarted)
                 return;
 
             GameData.ticksMade += 0.01;
@@ -158,26 +149,31 @@ namespace Arkanoid.Views
         {
             if (e.KeyCode == Keys.Space)
             {
-                GameData.GameStarted = true;
+                GameData.gameStarted = true;
                 timer1.Start();
             }
                 
         }
 
-        private void BallBounce()
+        private void BounceBall()
         {
+            //Pierde vida si:
             if (ball.Bottom > Height)
             {
                 GameData.lives--;
-                GameData.GameStarted = false; 
+                GameData.gameStarted = false; 
                 timer1.Stop();
                 RepositionItems();
                 UpdateItems();
 
+                //Terminando juego
                 if (GameData.lives == 0)
                 {
                     timer1.Stop();
                     GameEnded?.Invoke();
+                    
+                    var nombre = "NombredeUsuario";
+                    DataGame?.Invoke(GameData.score, nombre);
                 }
                 
             }
@@ -188,12 +184,13 @@ namespace Arkanoid.Views
                 return;
             }
 
-            if (ball.Bounds.IntersectsWith(pictureBox1.Bounds))
+            if (ball.Bounds.IntersectsWith(playerPb.Bounds))
             {
                 GameData.dirY = -GameData.dirY;
             }
 
-            for (int i = 0; i < yAxis; i++) // for (int i = 4; i >= 0; i--)
+            //Cargar tiles:
+            for (int i = 0; i < yAxis; i++) 
             {
                 for (int j = 0; j < xAxis; j++) // for (int j = 10; j < 1; j++)
                 {
@@ -245,10 +242,10 @@ namespace Arkanoid.Views
                         }
                         
                         //El escore depende de la distancia que parque el tick
-                        GameData.score += (int)(cpb[i, j].Golpes * GameData.ticksMade);
-                        cpb[i, j].Golpes--;
+                        GameData.score += (int)(cpb[i, j].Hits * GameData.ticksMade);
+                        cpb[i, j].Hits--;
 
-                        if (cpb[i, j].Golpes == 0)
+                        if (cpb[i, j].Hits == 0)
                         {
                             Controls.Remove(cpb[i,j]);
                             cpb[i, j] = null;
@@ -271,23 +268,24 @@ namespace Arkanoid.Views
             ball.Top += GameData.dirY;
         }
 
+        //Se encarga de inicializar todos los elementos del panel de puntaje + vidas
         private void ScorePanel()
         {
             //Instanciando panel
-            scores = new Panel();
+            scorePanel = new Panel();
             
             //Seteando elementos de panel
-            scores.Width = Width;
-            scores.Height = (int)(Height * 0.07);
+            scorePanel.Width = Width;
+            scorePanel.Height = (int)(Height * 0.07);
 
-            scores.Top = scores.Left = 0;
+            scorePanel.Top = scorePanel.Left = 0;
             
-            scores.BackColor = Color.Blue;
+            scorePanel.BackColor = Color.Blue;
             
             //Instanciando pictureBox
             heart = new PictureBox();
 
-            heart.Height = heart.Width = scores.Height; 
+            heart.Height = heart.Width = scorePanel.Height; 
             heart.Left = 20;
             heart.BackgroundImage = Image.FromFile("../../Resources/Heart.png");
             heart.BackgroundImageLayout = ImageLayout.Stretch;
@@ -309,26 +307,35 @@ namespace Arkanoid.Views
             remainingLives.Left = heart.Right + 5;
             score.Left = Width - 100;
 
-            remainingLives.Height = score.Height = scores.Height;
+            remainingLives.Height = score.Height = scorePanel.Height;
             
             
-            scores.Controls.Add(remainingLives);
-            scores.Controls.Add(score);
-            scores.Controls.Add(heart);
+            scorePanel.Controls.Add(remainingLives);
+            scorePanel.Controls.Add(score);
+            scorePanel.Controls.Add(heart);
 
-            Controls.Add(scores);
+            Controls.Add(scorePanel);
         }
 
         private void RepositionItems()
         {
-            pictureBox1.Left = (Width / 2) - (pictureBox1.Width / 2);
-            ball.Top = pictureBox1.Top - ball.Height;
-            ball.Left = pictureBox1.Left + (pictureBox1.Width / 2) - (ball.Width / 2);
+            playerPb.Left = (Width / 2) - (playerPb.Width / 2);
+            ball.Top = playerPb.Top - ball.Height;
+            ball.Left = playerPb.Left + (playerPb.Width / 2) - (ball.Width / 2);
         }
 
         private void UpdateItems()
         {
             remainingLives.Text = "x " + GameData.lives.ToString();
+        }
+
+        //MANDAR DATOS DEL JUGADOR A LA BD
+        public static void InsertValuesDB(int score, string nombreUsuario)
+        {
+            
+                DBConnetion.RealizarAccion("INSERT INTO USUARIO (nombreUsuario, score)"+
+                                           $"VALUES ('{nombreUsuario}', '{score}')");
+            
         }
     }
 }
