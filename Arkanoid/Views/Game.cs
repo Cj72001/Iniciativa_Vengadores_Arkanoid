@@ -10,6 +10,9 @@ namespace Arkanoid
     public partial class Game : Form
     {
         private ArkanoidControl ac;
+        public delegate void GetNickName(string text);
+        public GetNickName gn;
+        
 
         public Game()
         {
@@ -80,7 +83,7 @@ namespace Arkanoid
                 string nombre = TxtName.Text;
                 var consultar = DBConnetion.RealizarConsulta($"SELECT * FROM USERS " +
                                                              $"where name = '{nombre}'");
-                
+
                 string agregar = $"INSERT into USERS(name) VALUES('{nombre}')";
                 
                 if (TxtName.Text.Equals(""))

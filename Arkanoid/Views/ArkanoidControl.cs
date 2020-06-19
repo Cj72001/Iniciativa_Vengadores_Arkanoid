@@ -19,7 +19,7 @@ namespace Arkanoid.Views
         public Action GameWon;
         public Action <int, string> DataGame; //RECIBIENDO SCORE y NOMBRE DEL USUARIO
         private int xAxis = 3, yAxis = 4;
-        
+
         /*REAL
              int xAxis = 10;
              int yAxis = 5;*/
@@ -34,6 +34,13 @@ namespace Arkanoid.Views
             BallMovement = BounceBall;
             BallMovement += MoveBall;
         }
+        public ArkanoidControl(string nombre)
+        {
+            InitializeComponent();
+            BallMovement = BounceBall;
+            BallMovement += MoveBall;
+        }
+        
         
         //Metodos que coinciden  con el Delegate de Event
         private void Game_Load(object sender, EventArgs e)
@@ -49,7 +56,7 @@ namespace Arkanoid.Views
             //Seteando los elementos para el pictureBox ball:
             ball = new PictureBox();
             ball.Width = ball.Height = 20;
-            ball.BackgroundImage = Image.FromFile("../../Resources/ball.png");
+            ball.BackgroundImage = Image.FromFile("../../Resources/Ball.png");
             playerPb.BackgroundImageLayout = ImageLayout.Stretch; 
             ball.BackColor = Color.White;
             ball.Top = playerPb.Top - ball.Height;
@@ -333,7 +340,7 @@ namespace Arkanoid.Views
         public static void InsertValuesDB(int score, string nombreUsuario)
         {
             
-                DBConnetion.RealizarAccion("INSERT INTO USUARIO (nombreUsuario, score)"+
+                DBConnetion.RealizarAccion("INSERT INTO USUARIO (name, score)"+
                                            $"VALUES ('{nombreUsuario}', '{score}')");
             
         }
