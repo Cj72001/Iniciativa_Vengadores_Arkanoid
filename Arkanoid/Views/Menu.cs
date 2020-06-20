@@ -76,6 +76,14 @@ namespace Arkanoid.Views
             tableLayoutPanel1.Hide();
             this.Text = "Score";
             Controls.Add(sc);
+            
+            //Metodo para cambiar de Control
+            sc.RemoveScoreControl = () =>
+            {
+               Controls.Remove(sc);
+               this.Text = "Menu";
+               tableLayoutPanel1.Show();
+            };
         }
 
         private void BtnExit_Click(object sender, EventArgs e)
