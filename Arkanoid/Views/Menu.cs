@@ -16,7 +16,7 @@ namespace Arkanoid.Views
             Height = ClientSize.Height;
             Width = ClientSize.Width;
             WindowState = FormWindowState.Maximized;
-            this.BackgroundImage = Image.FromFile("../../Resources/fondo1.jpg");
+            BackgroundImage = Image.FromFile("../../Resources/fondo1.jpg");
         }
         
         private void Menu_Load(object sender, EventArgs e)

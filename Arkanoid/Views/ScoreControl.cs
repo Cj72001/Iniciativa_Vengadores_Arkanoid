@@ -11,7 +11,6 @@ namespace Arkanoid.Views
     {
         private Menu menu;
         public delegate void OnPanel();
-
         public OnPanel RemoveScoreControl;
             
         public ScoreControl()

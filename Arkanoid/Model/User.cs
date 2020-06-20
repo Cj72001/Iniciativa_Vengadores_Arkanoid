@@ -2,14 +2,17 @@
 {
     public class User
     {
-        public string IdUsuario { get; set; }
-
-        public string NombreUsuario { get; set; }
         
-        public User(string idUsuario, string nombreUsuario)
+        public string userName { get; set; }
+        
+        public int score { get; set; }
+        
+        
+        
+        public User(string userName, int score)
         {
-            IdUsuario = idUsuario;
-            NombreUsuario = nombreUsuario;
+            this.userName = userName;
+            this.score = score;
         }
     }
 }
