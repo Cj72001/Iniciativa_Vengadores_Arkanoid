@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using Arkanoid.Model;
@@ -83,6 +84,7 @@ namespace Arkanoid
                 string nombre = TxtName.Text;
                 var consultar = DBConnetion.RealizarConsulta($"SELECT * FROM USERS " +
                                                              $"where name = '{nombre}'");
+                
 
                 string agregar = $"INSERT into USERS(name) VALUES('{nombre}')";
                 
@@ -117,5 +119,7 @@ namespace Arkanoid
                 menuForm.Show();
                 this.Close();
         }
+
+
     }
 }

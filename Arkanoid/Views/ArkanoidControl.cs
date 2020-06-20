@@ -19,6 +19,7 @@ namespace Arkanoid.Views
         public Action GameWon;
         public Action <int, string> DataGame; //RECIBIENDO SCORE y NOMBRE DEL USUARIO
         private int xAxis = 3, yAxis = 4;
+        private string nick;
 
         /*REAL
              int xAxis = 10;
@@ -37,6 +38,7 @@ namespace Arkanoid.Views
         public ArkanoidControl(string nombre)
         {
             InitializeComponent();
+            nick = nombre;
             BallMovement = BounceBall;
             BallMovement += MoveBall;
         }
