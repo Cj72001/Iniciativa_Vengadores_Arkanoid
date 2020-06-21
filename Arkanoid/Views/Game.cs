@@ -49,30 +49,17 @@ namespace Arkanoid
                 var menuForm = new Menu();
                 menuForm.Show();
                 this.Close();
-                
             };
         }
 
         //Propiedades de botones:
-        private void BtnPlay_MouseEnter(object sender, EventArgs e)
-        {
-            BtnPlay.BackColor = Color.Red; 
-        }
+        private void BtnPlay_MouseEnter(object sender, EventArgs e) { BtnPlay.BackColor = Color.Red; }
 
-        private void BtnPlay_MouseLeave(object sender, EventArgs e)
-        {
-            BtnPlay.BackColor = Color.Transparent;
-        }
+        private void BtnPlay_MouseLeave(object sender, EventArgs e) { BtnPlay.BackColor = Color.Transparent; }
         
-        private void BtnBack_MouseEnter(object sender, EventArgs e)
-        {
-            BtnBack.BackColor = Color.Red;
-        }
+        private void BtnBack_MouseEnter(object sender, EventArgs e) { BtnBack.BackColor = Color.Red; }
 
-        private void BtnBack_MouseLeave(object sender, EventArgs e)
-        {
-            BtnBack.BackColor = Color.Transparent;
-        }
+        private void BtnBack_MouseLeave(object sender, EventArgs e) { BtnBack.BackColor = Color.Transparent; }
 
 
         private void BtnPlay_Click(object sender, EventArgs e)
