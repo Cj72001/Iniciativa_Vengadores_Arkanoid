@@ -22,45 +22,25 @@ namespace Arkanoid.Views
         private void Menu_Load(object sender, EventArgs e)
         {
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            
             //Instanciando ScoreControl
             sc = new ScoreControl();
             sc.Dock = DockStyle.Fill;
             sc.Width = Width;
             sc.Height = Height;
-            
         }
         
         //Propiedades de botones:
-        private void BtnPlay_MouseEnter(object sender, EventArgs e)
-        {
-                BtnPlay.BackColor = Color.Red;
-        }
+        private void BtnPlay_MouseEnter(object sender, EventArgs e) { BtnPlay.BackColor = Color.Red; }
 
-        private void BtnPlay_MouseLeave(object sender, EventArgs e)
-        {
-            BtnPlay.BackColor = Color.Transparent;
-        }
+        private void BtnPlay_MouseLeave(object sender, EventArgs e) { BtnPlay.BackColor = Color.Transparent; }
 
-        private void BtnScore_MouseEnter(object sender, EventArgs e)
-        {
-            BtnScore.BackColor = Color.Red;
-        }
+        private void BtnScore_MouseEnter(object sender, EventArgs e) { BtnScore.BackColor = Color.Red; }
         
-        private void BtnScore_MouseLeave(object sender, EventArgs e)
-        {
-            BtnScore.BackColor = Color.Transparent;
-        }
+        private void BtnScore_MouseLeave(object sender, EventArgs e) { BtnScore.BackColor = Color.Transparent; }
 
-        private void BtnExit_MouseEnter(object sender, EventArgs e)
-        {
-            BtnExit.BackColor = Color.Red;
-        }
+        private void BtnExit_MouseEnter(object sender, EventArgs e) { BtnExit.BackColor = Color.Red; }
 
-        private void BtnExit_MouseLeave(object sender, EventArgs e)
-        {
-            BtnExit.BackColor = Color.Transparent;
-        }
+        private void BtnExit_MouseLeave(object sender, EventArgs e) { BtnExit.BackColor = Color.Transparent; }
 
         private void BtnPlay_Click(object sender, EventArgs e)
         {
@@ -74,7 +54,7 @@ namespace Arkanoid.Views
         {
             //Cambiando el control que contiene actualemente el tableLayout por ScoreControl
             tableLayoutPanel1.Hide();
-            this.Text = "Score";
+            Text = "Score";
             Controls.Add(sc);
             
             //Metodo para cambiar de Control
@@ -86,9 +66,6 @@ namespace Arkanoid.Views
             };
         }
 
-        private void BtnExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        private void BtnExit_Click(object sender, EventArgs e) { Application.Exit(); }
     }
 }

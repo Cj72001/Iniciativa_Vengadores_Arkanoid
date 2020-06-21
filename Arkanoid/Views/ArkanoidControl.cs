@@ -16,11 +16,12 @@ namespace Arkanoid.Views
         private BallActions BallMovement;
         public Action GameEnded; 
         public Action GameWon;
+        private Game txt;
         
         public delegate void GetUser();
         public GetUser user;
         
-        private int xAxis = 3, yAxis = 4;
+        private int xAxis = 3, yAxis = 2;
         private string nick;
 
         /*REAL
@@ -59,6 +60,7 @@ namespace Arkanoid.Views
         //Metodos que coinciden  con el Delegate de Event
         private void Game_Load(object sender, EventArgs e)
         {
+            
             ScorePanel();
             
             //Seteando los elementos para el pictureBox jugador:
@@ -156,7 +158,6 @@ namespace Arkanoid.Views
         {
             if(!GameData.gameStarted)
                 return;
-
             GameData.ticksMade += 0.01;
             BallMovement?.Invoke();
         }

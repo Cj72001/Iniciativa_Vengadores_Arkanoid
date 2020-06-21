@@ -13,7 +13,7 @@ namespace Arkanoid.Views
         public delegate void OnPanel();
         public OnPanel RemoveScoreControl;
             
-        public ScoreControl()
+        public ScoreControl() 
         {
             InitializeComponent();
         }
