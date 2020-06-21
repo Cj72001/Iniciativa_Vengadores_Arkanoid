@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Arkanoid.Controllers
 {
-     static class ScoreController
+     static class ScoreController//score
     {
         public static DataTable GetTopTen(ref List<string> headers)
         {

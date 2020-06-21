@@ -3,9 +3,9 @@ using Npgsql;
 
 namespace Arkanoid.Model
 {
-    public static class DBConnetion
+    public static class DBConnetion //conexion a la base de datos
     {
-       private static string CadenaConexion =
+        private static string CadenaConexion =
                    "Server = ruby.db.elephantsql.com;" +
                    "Port = 5432;User Id=rwnpnzul;" +
                    "Password = fWYhnDsRuBKitfROuM1i2fo4FH7TzlRQ;" +
