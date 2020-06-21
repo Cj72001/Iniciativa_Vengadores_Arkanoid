@@ -62,8 +62,8 @@ private void InitializeComponent()
     this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
     this.Name = "ArkanoidControl";
     this.Size = new System.Drawing.Size(1168, 641);
-    this.Load += new System.EventHandler(this.Game_Load);
-    this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Game_KeyDown);
+    this.Load += new System.EventHandler(this.ArkanoidControl_Load);
+    this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ArkanoidControl_KeyDown);
     this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Game_MouseMove);
     ((System.ComponentModel.ISupportInitialize) (this.playerPb)).EndInit();
     this.ResumeLayout(false);

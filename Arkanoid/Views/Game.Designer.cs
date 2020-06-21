@@ -133,7 +133,6 @@ namespace Arkanoid
             this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.Name = "Game";
             this.Text = "Usuario";
-            this.Load += new System.EventHandler(this.Game_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

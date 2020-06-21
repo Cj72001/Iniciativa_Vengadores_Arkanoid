@@ -28,12 +28,6 @@ namespace Arkanoid
             BackgroundImage = Image.FromFile("../../Resources/fondo1.jpg");
         }
 
-        private void Game_Load(object sender, EventArgs e)
-        {
-            //Instanciando ArkanoidControl
-            
-        }
-
         //Propiedades de botones:
         private void BtnPlay_MouseEnter(object sender, EventArgs e) { BtnPlay.BackColor = Color.Red; }
 

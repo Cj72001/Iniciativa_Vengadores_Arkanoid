@@ -22,7 +22,7 @@ namespace Arkanoid.Views
         public delegate void GetUser();
         public GetUser user;
         
-        private int xAxis = 3, yAxis = 2;
+        private int xAxis = 5, yAxis = 4;
         private string nick;
 
         /*REAL
@@ -59,7 +59,7 @@ namespace Arkanoid.Views
 
 
         //Metodos que coinciden  con el Delegate de Event
-        private void Game_Load(object sender, EventArgs e)
+        private void ArkanoidControl_Load(object sender, EventArgs e)
         {
             
             ScorePanel();
@@ -192,7 +192,7 @@ namespace Arkanoid.Views
             }
         }
 
-        private void Game_KeyDown(object sender, KeyEventArgs e)
+        private void ArkanoidControl_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
@@ -377,11 +377,6 @@ namespace Arkanoid.Views
         private void UpdateItems()
         {
             remainingLives.Text = "x " + GameData.lives.ToString();
-        }
-
-        private void ArkanoidControl_VisibleChanged(object sender, EventArgs e)
-        {
-            Game_Load(sender, e);
         }
     }
 }
