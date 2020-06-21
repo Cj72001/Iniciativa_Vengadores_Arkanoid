@@ -10,6 +10,9 @@ namespace Arkanoid.Views
     public partial class ScoreControl : UserControl
     {
         private Menu menu;
+        public delegate void OnPanel();
+        public OnPanel RemoveScoreControl;
+            
         public ScoreControl()
         {
             InitializeComponent();
@@ -69,12 +72,10 @@ namespace Arkanoid.Views
 
             }
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
-            var menuForm = new Menu();
-            menuForm.Show();
-            this.Dispose();
+            RemoveScoreControl?.Invoke();
         }
 
         //Propiedades de botones:

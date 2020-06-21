@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using Arkanoid.Model;
@@ -13,7 +12,7 @@ namespace Arkanoid
         private ArkanoidControl ac;
         public delegate void GetNickName(string text);
         public GetNickName gn;
-        
+
 
         public Game()
         {
@@ -22,9 +21,9 @@ namespace Arkanoid
             Height = ClientSize.Height;
             Width = ClientSize.Width;
             WindowState = FormWindowState.Maximized;
-            this.BackgroundImage = Image.FromFile("../../Resources/fondo1.jpg");
+            BackgroundImage = Image.FromFile("../../Resources/fondo1.jpg");
         }
-        
+
         private void Game_Load(object sender, EventArgs e)
         {
             //Instanciando ArkanoidControl
@@ -84,7 +83,6 @@ namespace Arkanoid
                 string nombre = TxtName.Text;
                 var consultar = DBConnetion.RealizarConsulta($"SELECT * FROM USERS " +
                                                              $"where name = '{nombre}'");
-                
 
                 string agregar = $"INSERT into USERS(name) VALUES('{nombre}')";
                 
@@ -96,17 +94,27 @@ namespace Arkanoid
                 {
                     if (consultar.Rows.Count == 1)
                     {
+                        Console.WriteLine("Bienvenido de nuevo "+ TxtName.Text);
                         tableLayoutPanel1.Hide();
                         this.Text = "Arkanoid";
                         Controls.Add(ac);   
                     }
                     else
                     {
-                        //Cambiando el control del tableLayout por ArkanoidControl
+                        //Agregando User a DB
                         DBConnetion.RealizarAccion(agregar);
+                        
+                        //Cambiando el control del tableLayout por ArkanoidControl
                         tableLayoutPanel1.Hide();
                         this.Text = "Arkanoid";
                         Controls.Add(ac);
+                        
+                        //Metodo para agregar UserName y Score
+                        ac.user = () =>
+                        {
+                            // new User(TxtName.Text, GameData.score);
+                            DBConnetion.RealizarAccion($"INSERT into USERS(name, score) VALUES('{TxtName.Text}', '{GameData.score}')");
+                        };
                     }
                 }
             }
@@ -119,7 +127,6 @@ namespace Arkanoid
                 menuForm.Show();
                 this.Close();
         }
-
-
+        
     }
 }
