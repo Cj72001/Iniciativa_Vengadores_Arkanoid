@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Arkanoid.Controllers;
 using Arkanoid.Model;
 
 namespace Arkanoid.Views
@@ -159,17 +160,53 @@ namespace Arkanoid.Views
             if(!GameData.gameStarted)
                 return;
             GameData.ticksMade += 0.01;
-            BallMovement?.Invoke();
+
+            try
+            {
+                BallMovement?.Invoke();
+            }
+            catch (OutOfBoundsException ex)
+            {
+                try
+                { 
+                    GameData.lives--; 
+                    GameData.gameStarted = false; 
+                    timer1.Stop(); 
+                    RepositionItems(); 
+                    UpdateItems();
+
+                    //Terminando juego
+                    if (GameData.lives == 0) 
+                    {
+                        throw new NoRemainingLivesException("");
+                        // timer1.Stop();
+                        // GameEnded?.Invoke();
+                        // user?.Invoke();
+                    } 
+                }catch (NoRemainingLivesException ex1) 
+                {
+                    timer1.Stop();
+                    GameEnded?.Invoke();
+                    user?.Invoke();
+                }
+            }
         }
 
         private void Game_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space)
+            try
             {
-                GameData.gameStarted = true;
-                timer1.Start();
+                switch (e.KeyCode)
+                {
+                    case Keys.Space:
+                        GameData.gameStarted = true;
+                        timer1.Start();
+                        break;
+                    default:
+                        throw new WrongKeyPressedException("Presione space para iniciar al juego");
+                }
             }
-                
+            catch (WrongKeyPressedException ex) { MessageBox.Show(ex.Message); }
         }
 
         private void BounceBall()
@@ -177,25 +214,12 @@ namespace Arkanoid.Views
             if (ball.Top < 0)
             {
                 GameData.dirY = -GameData.dirY;
+                return;
             }
             //Pierde vida si:
             if (ball.Bottom > Height)
-            {
-                GameData.lives--;
-                GameData.gameStarted = false; 
-                timer1.Stop();
-                RepositionItems();
-                UpdateItems();
-
-                //Terminando juego
-                if (GameData.lives == 0)
-                {
-                    timer1.Stop();
-                    GameEnded?.Invoke();
-                    user?.Invoke();
-                }
-                
-            }
+            
+                throw new OutOfBoundsException("");
                 
             if (ball.Left < 0 || ball.Right > Width)
             {
@@ -354,6 +378,10 @@ namespace Arkanoid.Views
         {
             remainingLives.Text = "x " + GameData.lives.ToString();
         }
-        
+
+        private void ArkanoidControl_VisibleChanged(object sender, EventArgs e)
+        {
+            Game_Load(sender, e);
+        }
     }
 }

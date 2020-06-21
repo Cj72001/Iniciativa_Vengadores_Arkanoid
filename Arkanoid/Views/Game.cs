@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Arkanoid.Controllers;
 using Arkanoid.Model;
 using Arkanoid.Views;
 using Menu = Arkanoid.Views.Menu;
@@ -30,39 +31,7 @@ namespace Arkanoid
         private void Game_Load(object sender, EventArgs e)
         {
             //Instanciando ArkanoidControl
-            ac = null;
-            ac = new ArkanoidControl();
-            ac.Dock = DockStyle.Fill;
-            ac.Width = Width;
-            ac.Height = Height;
-            //Metodo GameEnded que vuelve al menu al terminar el juego
-            ac.GameEnded = () =>
-            {
-                MessageBox.Show("PERDISTE");
-                var menuForm = new Menu();
-                menuForm.Show();
-                Dispose();
-            };
             
-            //Metodo GameWon que vuelve al menu al ganar la partida y guarda los datos del ganador
-            ac.GameWon = () =>
-            {
-                var id = DBConnetion.RealizarConsulta($"select id from users where name='{TxtName.Text}'").Rows[0][0].
-                    ToString();
-                var maximo = DBConnetion.RealizarConsulta($"select attempt from attempts" +
-                                                          $" where id_user = '{Convert.ToInt32(id)}' ORDER BY attempt DESC FETCH FIRST 1 ROWS ONLY");
-                
-                int val;
-                
-                if (maximo.Rows.Count == 0) val = 1;
-                else val = Convert.ToInt32(maximo.Rows[0][0].ToString()) + 1;
-                
-                DBConnetion.RealizarAccion($"INSERT into ATTEMPTS(id_user,attempt,score) VALUES('{Convert.ToInt32(id)}', {val},{GameData.score})");
-                MessageBox.Show("GANASTE LA PARTIDA");
-                var menuForm = new Menu();
-                menuForm.Show();
-                Dispose();
-            };
         }
 
         //Propiedades de botones:
@@ -81,39 +50,54 @@ namespace Arkanoid
         {
             try
             {
+                GameData.InitializeGame();
+                Loading();
                 gn?.Invoke(TxtName.Text);
-                
+
                 string nombre = TxtName.Text;
                 var consultar = DBConnetion.RealizarConsulta($"SELECT * FROM USERS " +
                                                              $"where name = '{nombre}'");
 
                 string agregar = $"INSERT into USERS(name) VALUES('{nombre}')";
-                
-                gn = nick =>{
-                    if (TxtName.Text.Equals("")) MessageBox.Show("Debe ingresar un nombre de usuario");
-                    
-                    else
+
+                gn = nick =>
+                {
+                    switch (TxtName.Text)
                     {
-                        if (consultar.Rows.Count == 1)
-                        {
-                            MessageBox.Show($"Bienvenido de nuevo {nick}","Game");
-                            tableLayoutPanel1.Hide();
-                            Text = "Arkanoid";
-                        }
-                        else
-                        {
-                            //Agregando User a DB
-                            DBConnetion.RealizarAccion(agregar);
-                            MessageBox.Show($"Gracias por registrarte {nick} \n Presiona OK para comenzar a jugar");
-                            //Cambiando el control del tableLayout por ArkanoidControl
-                            tableLayoutPanel1.Hide();
-                            Text = "Arkanoid";
-                        }
+                        case string aux when aux.Length > 16:
+                            throw new ExceededMaxCharactersException(
+                                "No se puede ingresar un alias de mas de 16 caracteres");
+                        case string aux when aux.Trim().Length == 0:
+                            throw new EmpyNicknameException("Debe ingresar un nombre de usuario");
+                        default:
+                            if (consultar.Rows.Count == 1)
+                            {
+                                MessageBox.Show($"Bienvenido de nuevo {nick}", "Game");
+                                tableLayoutPanel1.Hide();
+                                Text = "Arkanoid";
+                            }
+                            else
+                            {
+                                //Agregando User a DB
+                                DBConnetion.RealizarAccion(agregar);
+                                MessageBox.Show($"Gracias por registrarte {nick} \n Presiona OK para comenzar a jugar");
+                                //Cambiando el control del tableLayout por ArkanoidControl
+                                tableLayoutPanel1.Hide();
+                                Text = "Arkanoid";
+                            }
+                            Controls.Add(ac);
+                            break;
                     }
                 };
-                Controls.Add(ac);
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (ExceededMaxCharactersException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (EmpyNicknameException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         
         //evento que regresa al menu principal estando en el Game Form
@@ -122,6 +106,47 @@ namespace Arkanoid
             var menuForm = new Menu();
                 menuForm.Show();
                 Dispose();
+        }
+
+        //Funcion encargada de generar todos los loads del juego
+        private void Loading()
+        {
+            //Instanciacion del ArkanoidControl
+            ac = new ArkanoidControl
+            {
+                Dock = DockStyle.Fill,
+                Width = Width,
+                Height = Height
+            };
+            
+            //Action GameEnded que vuelve al menu al terminar el juego
+            ac.GameEnded = () =>
+            {
+                MessageBox.Show("PERDISTE");
+                var menuForm = new Menu();
+                menuForm.Show();
+                Dispose();
+            };
+            
+            //Action GameWon que vuelve al menu al ganar la partida y guarda los datos del ganador
+            ac.GameWon = () =>
+            {
+                var id = DBConnetion.RealizarConsulta($"select id from users where name='{TxtName.Text}'").Rows[0][0].
+                    ToString();
+                var maximo = DBConnetion.RealizarConsulta($"select attempt from attempts" +
+                                                          $" where id_user = '{Convert.ToInt32(id)}' ORDER BY attempt DESC FETCH FIRST 1 ROWS ONLY");
+                
+                int val;
+                
+                if (maximo.Rows.Count == 0) val = 1;
+                else val = Convert.ToInt32(maximo.Rows[0][0].ToString()) + 1;
+                
+                DBConnetion.RealizarAccion($"INSERT into ATTEMPTS(id_user,attempt,score) VALUES('{Convert.ToInt32(id)}', {val},{GameData.score})");
+                MessageBox.Show("GANASTE LA PARTIDA");
+                var menuForm = new Menu();
+                menuForm.Show();
+                Dispose();
+            };
         }
     }
 }

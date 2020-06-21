@@ -91,7 +91,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\EmpyNicknameException.cs" />
+    <Compile Include="Controllers\ExceededMaxCharactersException.cs" />
+    <Compile Include="Controllers\NoRemainingLivesException.cs" />
+    <Compile Include="Controllers\OutOfBoundsException.cs" />
     <Compile Include="Controllers\ScoreController.cs" />
+    <Compile Include="Controllers\WrongKeyPressedException.cs" />
     <Compile Include="Model\CustomPictureBox.cs" />
     <Compile Include="Model\DBConnetion.cs" />
     <Compile Include="Model\GameData.cs" />
