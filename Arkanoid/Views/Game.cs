@@ -109,7 +109,7 @@ namespace Arkanoid
                         this.Text = "Arkanoid";
                         Controls.Add(ac);
                         
-                        //Metodo para agregar Usuario
+                        //Metodo para agregar UserName y Score
                         ac.user = () =>
                         {
                             // new User(TxtName.Text, GameData.score);
