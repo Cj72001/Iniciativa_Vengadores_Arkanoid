@@ -3,15 +3,15 @@ using Npgsql;
 
 namespace Arkanoid.Model
 {
-    public static class DBConnetion
+    public static class DBConnetion //conexion a la base de datos
     {
-       private static string CadenaConexion =
+        private static string CadenaConexion =
                    "Server = ruby.db.elephantsql.com;" +
                    "Port = 5432;User Id=rwnpnzul;" +
                    "Password = fWYhnDsRuBKitfROuM1i2fo4FH7TzlRQ;" +
                    "Database = rwnpnzul";
                
-               public static DataTable Query(string sql)
+               public static DataTable RealizarConsulta(string sql)
                {
                    NpgsqlConnection conn = new NpgsqlConnection(CadenaConexion);
                    DataSet ds = new DataSet();
@@ -24,7 +24,7 @@ namespace Arkanoid.Model
                    return ds.Tables[0];
                }
        
-               public static void NonQuery(string sql)
+               public static void RealizarAccion(string sql)
                {
                    NpgsqlConnection conn = new NpgsqlConnection(CadenaConexion);
                    
