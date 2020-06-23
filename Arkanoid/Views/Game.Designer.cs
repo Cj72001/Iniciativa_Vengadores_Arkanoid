@@ -69,9 +69,10 @@ namespace Arkanoid
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.label1, 3);
-            this.label1.Font = new System.Drawing.Font("Showcard Gothic", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label1.Font = new System.Drawing.Font("Showcard Gothic", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(166, 108);
             this.label1.Name = "label1";
@@ -87,7 +88,7 @@ namespace Arkanoid
             this.TxtName.Location = new System.Drawing.Point(166, 221);
             this.TxtName.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.TxtName.Name = "TxtName";
-            this.TxtName.Size = new System.Drawing.Size(483, 22);
+            this.TxtName.Size = new System.Drawing.Size(483, 20);
             this.TxtName.TabIndex = 2;
             // 
             // BtnPlay
@@ -95,7 +96,7 @@ namespace Arkanoid
             this.BtnPlay.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnPlay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnPlay.Font = new System.Drawing.Font("Showcard Gothic", 16.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.BtnPlay.Font = new System.Drawing.Font("Showcard Gothic", 16.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnPlay.ForeColor = System.Drawing.Color.White;
             this.BtnPlay.Location = new System.Drawing.Point(492, 329);
             this.BtnPlay.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -113,7 +114,7 @@ namespace Arkanoid
             this.BtnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnBack.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnBack.Font = new System.Drawing.Font("Showcard Gothic", 16.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.BtnBack.Font = new System.Drawing.Font("Showcard Gothic", 16.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnBack.ForeColor = System.Drawing.Color.White;
             this.BtnBack.Location = new System.Drawing.Point(166, 329);
             this.BtnBack.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -130,12 +131,13 @@ namespace Arkanoid
             // 
             this.ClientSize = new System.Drawing.Size(817, 540);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Game";
             this.Text = "Usuario";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.Button BtnBack;
