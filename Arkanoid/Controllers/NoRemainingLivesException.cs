@@ -4,6 +4,6 @@ namespace Arkanoid.Controllers
 {
     public class NoRemainingLivesException : Exception
     {
-        public NoRemainingLivesException(string Message) : base(Message){}//noremaining
+        public NoRemainingLivesException(string Message) : base(Message){}
     }
 }

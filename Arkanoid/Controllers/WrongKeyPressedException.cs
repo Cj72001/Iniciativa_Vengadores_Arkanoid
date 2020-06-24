@@ -4,6 +4,6 @@ namespace Arkanoid.Controllers
 {
     public class WrongKeyPressedException : Exception
     {
-        public WrongKeyPressedException(string Message) : base(Message){}//presionar tecla 
+        public WrongKeyPressedException(string Message) : base(Message){} 
     }
 }

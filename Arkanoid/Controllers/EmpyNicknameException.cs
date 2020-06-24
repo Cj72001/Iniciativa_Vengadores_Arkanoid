@@ -2,7 +2,7 @@
 
 namespace Arkanoid.Controllers
 {
-    public class EmpyNicknameException : Exception //vacio
+    public class EmpyNicknameException : Exception
     {
         public EmpyNicknameException(string Message) : base(Message){ }
     }

@@ -17,20 +17,10 @@ namespace Arkanoid.Views
         private BallActions BallMovement;
         public Action GameEnded; 
         public Action GameWon;
-        private Game txt;
-        
         public delegate void GetUser();
         public GetUser user;
         
         private int xAxis = 5, yAxis = 4;
-        private string nick;
-
-        /*REAL
-             int xAxis = 10;
-             int yAxis = 5;*/
-        /*PRUEBA
-         int xAxis = 3;
-         int yAxis = 3;*/
 
         public ArkanoidControl()
         {
@@ -39,14 +29,7 @@ namespace Arkanoid.Views
             BallMovement = BounceBall;
             BallMovement += MoveBall;
         }
-        public ArkanoidControl(string nombre)
-        {
-            InitializeComponent();
-            nick = nombre;
-            BallMovement = BounceBall;
-            BallMovement += MoveBall;
-        }
-        
+
         protected override CreateParams CreateParams
         {
             get
@@ -179,9 +162,6 @@ namespace Arkanoid.Views
                     if (GameData.lives == 0) 
                     {
                         throw new NoRemainingLivesException("");
-                        // timer1.Stop();
-                        // GameEnded?.Invoke();
-                        // user?.Invoke();
                     } 
                 }catch (NoRemainingLivesException ex1) 
                 {
@@ -235,7 +215,7 @@ namespace Arkanoid.Views
             
             for (int i = 0; i < yAxis; i++) 
             {
-                for (int j = 0; j < xAxis; j++) // for (int j = 10; j < 1; j++)
+                for (int j = 0; j < xAxis; j++)
                 {
                     if (cpb[i,j]!=null && ball.Bounds.IntersectsWith(cpb[i, j].Bounds))
                     {

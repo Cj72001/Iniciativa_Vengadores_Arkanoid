@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace Arkanoid.Controllers
 {
-     static class ScoreController//score
+     static class ScoreController
     {
+        //funcion tipo Datatable que se encarga de obetener el top 10 de la base de datos
         public static DataTable GetTopTen(ref List<string> headers) 
         {
             List<ScoreModel> TopTen = new List<ScoreModel>();

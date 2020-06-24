@@ -6,9 +6,9 @@ namespace Arkanoid.Model
     public static class DBConnetion //conexion a la base de datos
     {
         private static string CadenaConexion =
-                   "Server = ruby.db.elephantsql.com;" +
-                   "Port = 5432;User Id=rwnpnzul;" +
-                   "Password = fWYhnDsRuBKitfROuM1i2fo4FH7TzlRQ;" +
+                   "Server = localhost;" +
+                   "Port = 5432;User postgres;" +
+                   "Password = root;" +
                    "Database = rwnpnzul";
                
                public static DataTable RealizarConsulta(string sql)

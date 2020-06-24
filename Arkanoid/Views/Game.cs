@@ -44,16 +44,21 @@ namespace Arkanoid
         {
             try
             {
+                //se manda a llamar el InitializeGame para que se actualicen los datos al volver a jugar
                 GameData.InitializeGame();
+                //se cargan los Action y propiedades del ArkanoidControl
                 Loading();
+                //se invoca el delegate
                 gn?.Invoke(TxtName.Text);
 
                 string nombre = TxtName.Text;
+                //variable tipo data table
                 var consultar = DBConnetion.RealizarConsulta($"SELECT * FROM USERS " +
                                                              $"where name = '{nombre}'");
 
                 string agregar = $"INSERT into USERS(name) VALUES('{nombre}')";
-
+                
+                //hacemos uso del delegate para comunicar el nombre entre este form y el arkanoud control
                 gn = nick =>
                 {
                     switch (TxtName.Text)
@@ -63,13 +68,15 @@ namespace Arkanoid
                                 "No se puede ingresar un alias de mas de 16 caracteres");
                         case string aux when aux.Trim().Length == 0:
                             throw new EmpyNicknameException("Debe ingresar un nombre de usuario");
-                        default:
+                        default://en caso de que no se cumpla ningun caso de excepcion, se corre el juego
+                            //verifiica si el usuario ya existe en la base de datos
                             if (consultar.Rows.Count == 1)
                             {
                                 MessageBox.Show($"Bienvenido de nuevo {nick}", "Game");
                                 tableLayoutPanel1.Hide();
                                 Text = "Arkanoid";
                             }
+                            //si no existe lo agrega
                             else
                             {
                                 //Agregando User a DB

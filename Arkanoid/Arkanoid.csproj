@@ -101,7 +101,6 @@
     <Compile Include="Model\CustomPictureBox.cs" />
     <Compile Include="Model\GameData.cs" />
     <Compile Include="Model\ScoreModel.cs" />
-    <Compile Include="Model\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ArkanoidControl.cs">

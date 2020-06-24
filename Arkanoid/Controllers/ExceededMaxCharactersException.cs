@@ -2,7 +2,7 @@
 
 namespace Arkanoid.Controllers
 {
-    public class ExceededMaxCharactersException : Exception //exceso
+    public class ExceededMaxCharactersException : Exception
     {
         public ExceededMaxCharactersException(string Message) : base(Message){}
     }

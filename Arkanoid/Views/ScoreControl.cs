@@ -22,7 +22,8 @@ namespace Arkanoid.Views
         {
             CargarDatos();
         }
-
+        
+        //funcion encargada de mostrar el top 10 en el TableLayout dentro del ScoreCotrol
         private void CargarDatos()
         {
             
