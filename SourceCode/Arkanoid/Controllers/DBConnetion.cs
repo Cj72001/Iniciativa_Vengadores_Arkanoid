@@ -7,7 +7,7 @@ namespace Arkanoid.Model
     {
         private static string CadenaConexion =
                    "Server = localhost;" +
-                   "Port = 5432;User postgres;" +
+                   "Port = 5432;User Id = postgres;" +
                    "Password = root;" +
                    "Database = rwnpnzul";
                
