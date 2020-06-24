@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Arkanoid.Controllers;
-using Arkanoid.Model;
 
 namespace Arkanoid.Views
 {
     public partial class ScoreControl : UserControl
     {
-        public ScoreControl()
+        private Menu menu;
+        public delegate void OnPanel();
+        public OnPanel RemoveScoreControl;
+            
+        public ScoreControl() 
         {
             InitializeComponent();
         }
@@ -23,7 +22,8 @@ namespace Arkanoid.Views
         {
             CargarDatos();
         }
-
+        
+        //funcion encargada de mostrar el top 10 en el TableLayout dentro del ScoreCotrol
         private void CargarDatos()
         {
             
@@ -73,6 +73,15 @@ namespace Arkanoid.Views
 
             }
         }
- 
+        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RemoveScoreControl?.Invoke();
+        }
+
+        //Propiedades de botones:
+        private void button1_MouseEnter(object sender, EventArgs e) { button1.BackColor = Color.Red; }
+
+        private void button1_MouseLeave(object sender, EventArgs e) { button1.BackColor = Color.Transparent; }
     }
 }

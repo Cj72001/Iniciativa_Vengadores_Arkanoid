@@ -10,25 +10,24 @@ namespace Arkanoid.Controllers
 {
      static class ScoreController
     {
-        public static DataTable GetTopTen(ref List<string> headers)
+        //funcion tipo Datatable que se encarga de obetener el top 10 de la base de datos
+        public static DataTable GetTopTen(ref List<string> headers) 
         {
             List<ScoreModel> TopTen = new List<ScoreModel>();
-            DataTable TableScore =  DBConnetion.RealizarConsulta($"select  users.name as usuario, attempts.attempt as intento, " +
-                $"attempts.score as puntaje from attempts inner join users on attempts.id_user = users.id " +
-                $"ORDER BY attempts.score desc fetch first 10 rows only");
+            DataTable TableScore =  DBConnetion.RealizarConsulta($"select users.name as usuario, t.attempt as intento, t.score as puntaje from " +
+                $"(SELECT distinct on (id_user) id_user, attempt, score from attempts ORDER BY id_user, score DESC) as t " +
+                $"inner join users on t.id_user = users.id  ORDER BY t.score desc fetch first 10 rows only");
 
-            foreach(DataColumn dc in TableScore.Columns)
-            {
-                headers.Add(dc.ColumnName);
-            }
+            foreach(DataColumn dc in TableScore.Columns) headers.Add(dc.ColumnName);
+            
 
             foreach (DataRow dr in TableScore.Rows)
-            {
+            { 
                 TopTen.Add(new ScoreModel(
                     dr[0].ToString(),
                     dr[1].ToString(),
                     dr[2].ToString()
-                    ));
+                ));
             }
 
             return TableScore;
