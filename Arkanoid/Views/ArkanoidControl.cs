@@ -17,13 +17,8 @@ namespace Arkanoid.Views
         private BallActions BallMovement;
         public Action GameEnded; 
         public Action GameWon;
-        private Game txt;
-        
-        public delegate void GetUser();
-        public GetUser user;
         
         private int xAxis = 5, yAxis = 4;
-        private string nick;
 
         /*REAL
              int xAxis = 10;
@@ -36,17 +31,12 @@ namespace Arkanoid.Views
         {
             InitializeComponent();
             
-            BallMovement = BounceBall;
-            BallMovement += MoveBall;
-        }
-        public ArkanoidControl(string nombre)
-        {
-            InitializeComponent();
-            nick = nombre;
+            //Al delegate se le suscriben dos metodos
             BallMovement = BounceBall;
             BallMovement += MoveBall;
         }
         
+        //Basicamente permite que el control vaya mejor, sea mas fluido.
         protected override CreateParams CreateParams
         {
             get
@@ -61,7 +51,7 @@ namespace Arkanoid.Views
         //Metodos que coinciden  con el Delegate de Event
         private void ArkanoidControl_Load(object sender, EventArgs e)
         {
-            
+            //Se encarga de inicializar todos los elementos del panel de puntaje + vidas
             ScorePanel();
             
             //Seteando los elementos para el pictureBox jugador:
@@ -79,11 +69,14 @@ namespace Arkanoid.Views
             ball.Left = playerPb.Left + (playerPb.Width / 2) - (ball.Width / 2);
             
             Controls.Add(ball);
+            
+            //Se encarga de cargar los tiles
             LoadTiles();
         }
         
         private void LoadTiles()
         {
+             
             int pbWidth = (Width - xAxis) / xAxis;
             int pbHeight = (int)(Height * 0.3) / yAxis;
             
@@ -169,6 +162,7 @@ namespace Arkanoid.Views
             {
                 try
                 { 
+                    //Es cuando la pelota se salio y perdes una vida y items se reposicionan 
                     GameData.lives--; 
                     GameData.gameStarted = false; 
                     timer1.Stop(); 
@@ -187,7 +181,6 @@ namespace Arkanoid.Views
                 {
                     timer1.Stop();
                     GameEnded?.Invoke();
-                    user?.Invoke();
                 }
             }
         }
@@ -221,18 +214,20 @@ namespace Arkanoid.Views
             
                 throw new OutOfBoundsException("");
                 
+            //Rebota en bordes
             if (ball.Left < 0 || ball.Right > Width)
             {
                 GameData.dirX = -GameData.dirX;
                 return;
             }
 
+            //Rebota con barra del jugador
             if (ball.Bounds.IntersectsWith(playerPb.Bounds))
             {
                 GameData.dirY = -GameData.dirY;
             }
 
-            
+            //Rebotes con los tiles 
             for (int i = 0; i < yAxis; i++) 
             {
                 for (int j = 0; j < xAxis; j++) // for (int j = 10; j < 1; j++)
@@ -250,45 +245,72 @@ namespace Arkanoid.Views
                         if (i == 0 && j == 0)
                         {
                             if (cpb[0, 1] == null &&
-                                cpb[0, 2] == null)
+                                cpb[0, 2] == null &&
+                                cpb[0, 3] == null &&
+                                cpb[0, 4] == null)
                             {
                                 Controls.Remove(cpb[i, j]);
                                 timer1.Stop();
                                 GameWon?.Invoke();
-                                //
-                                user?.Invoke();
                                 return;
                             }
                         }
                         
                         if (i == 0 && j == 1)
                         {
-                            if (cpb[0, 0] == null && 
-                                cpb[0, 2] == null)
+                            if (cpb[0, 0] == null &&
+                                cpb[0, 2] == null &&
+                                cpb[0, 3] == null &&
+                                cpb[0, 4] == null)
                             {
                                 Controls.Remove(cpb[i, j]);
                                 timer1.Stop();
                                 GameWon?.Invoke();
-                                //
-                                user?.Invoke();
                                 return;
                             }
                         }
                         
                         if (i == 0 && j == 2)
                         {
-                            if (cpb[0, 0] == null && 
-                                cpb[0, 1] == null)
+                            if (cpb[0, 0] == null &&
+                                cpb[0, 1] == null &&
+                                cpb[0, 3] == null &&
+                                cpb[0, 4] == null)
                             {
                                 Controls.Remove(cpb[i, j]);
                                 timer1.Stop();
                                 GameWon?.Invoke();
-                                //
-                                user?.Invoke();
                                 return;
                             }
                         }
                         
+                        if (i == 0 && j == 3)
+                        {
+                            if (cpb[0, 0] == null &&
+                                cpb[0, 1] == null &&
+                                cpb[0, 2] == null &&
+                                cpb[0, 4] == null)
+                            {
+                                Controls.Remove(cpb[i, j]);
+                                timer1.Stop();
+                                GameWon?.Invoke();
+                                return;
+                            }
+                        }
+                        
+                        if (i == 0 && j == 4)
+                        {
+                            if (cpb[0, 0] == null &&
+                                cpb[0, 1] == null &&
+                                cpb[0, 2] == null &&
+                                cpb[0, 3] == null)
+                            {
+                                Controls.Remove(cpb[i, j]);
+                                timer1.Stop();
+                                GameWon?.Invoke();
+                                return;
+                            }
+                        }
                         
                         GameData.score += (int)(cpb[i, j].Hits * GameData.ticksMade);
                         cpb[i, j].Hits--;
