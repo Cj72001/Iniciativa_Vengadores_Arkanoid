@@ -109,7 +109,7 @@ namespace Arkanoid
                 Dispose();
         }
 
-        //Funcion encargada de generar todos los loads del juego!
+        //Funcion encargada de generar todos los loads del juego
         private void Loading()
         {
             //Instanciacion del ArkanoidControl
